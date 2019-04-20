@@ -18,7 +18,7 @@ namespace np_website.Models
         public string Password { get; set; }
 
         [Display(Name = "Repeat Password")]
-        [Compare("Password", ErrorMessage = "Confirm password doesn't match!")]
+        [Compare("Password", ErrorMessage = "Passwords don't match!")]
         public string PasswordRepeat { get; set; }
 
         [Display(Name = "Character Name")]
