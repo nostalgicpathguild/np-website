@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NPGuildModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RaidAttendance">
+          <Key>
+            <PropertyRef Name="RaidAttendanceId" />
+          </Key>
+          <Property Name="RaidAttendanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Group" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Class" Type="nvarchar(max)" />
+          <Property Name="Role" Type="nvarchar(max)" />
+          <Property Name="Flagged" Type="bit" Nullable="false" />
+          <Property Name="DumpTime" Type="datetime" Nullable="false" />
+          <Property Name="DKP" Type="int" Nullable="false" />
+          <Property Name="Include" Type="bit" Nullable="false" />
+          <Property Name="Processed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserLevels">
+          <Key>
+            <PropertyRef Name="UserLevelId" />
+          </Key>
+          <Property Name="UserLevelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="varbinary" MaxLength="1024" Nullable="false" />
+          <Property Name="PasswordSalt" Type="varbinary" MaxLength="1024" Nullable="false" />
+          <Property Name="CharacterName" Type="nvarchar(max)" />
+          <Property Name="UserLevelId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Posts_Author">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserLevel">
+          <End Role="UserLevels" Type="Self.UserLevels" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLevels">
+              <PropertyRef Name="UserLevelId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NPGuildModelStoreContainer">
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RaidAttendance" EntityType="Self.RaidAttendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLevels" EntityType="Self.UserLevels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Posts_Author" Association="Self.FK_Posts_Author">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserLevel" Association="Self.FK_Users_UserLevel">
+            <End Role="UserLevels" EntitySet="UserLevels" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NPGuildModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="NPGuildModel.FK_Posts_Author" FromRole="Post" ToRole="User" />
+        </EntityType>
+        <EntityType Name="RaidAttendance">
+          <Key>
+            <PropertyRef Name="RaidAttendanceId" />
+          </Key>
+          <Property Name="RaidAttendanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Group" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Flagged" Type="Boolean" Nullable="false" />
+          <Property Name="DumpTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DKP" Type="Int32" Nullable="false" />
+          <Property Name="Include" Type="Boolean" Nullable="false" />
+          <Property Name="Processed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserLevel">
+          <Key>
+            <PropertyRef Name="UserLevelId" />
+          </Key>
+          <Property Name="UserLevelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="NPGuildModel.FK_Users_UserLevel" FromRole="UserLevel" ToRole="User" />
+        </EntityType>
+        <EntityContainer Name="NPGuildEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="RaidAttendances" EntityType="Self.RaidAttendance" />
+          <EntitySet Name="UserLevels" EntityType="Self.UserLevel" />
+          <EntitySet Name="Users" EntityType="NPGuildModel.User" />
+          <AssociationSet Name="FK_Posts_Author" Association="NPGuildModel.FK_Posts_Author">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserLevel" Association="NPGuildModel.FK_Users_UserLevel">
+            <End Role="UserLevel" EntitySet="UserLevels" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="Binary" Nullable="false" MaxLength="1024" FixedLength="false" />
+          <Property Name="PasswordSalt" Type="Binary" Nullable="false" MaxLength="1024" FixedLength="false" />
+          <Property Name="CharacterName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserLevelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Posts" Relationship="NPGuildModel.FK_Posts_Author" FromRole="User" ToRole="Post" />
+          <NavigationProperty Name="UserLevel" Relationship="NPGuildModel.FK_Users_UserLevel" FromRole="User" ToRole="UserLevel" />
+        </EntityType>
+        <Association Name="FK_Posts_Author">
+          <End Type="NPGuildModel.User" Role="User" Multiplicity="1" />
+          <End Type="NPGuildModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserLevel">
+          <End Type="NPGuildModel.UserLevel" Role="UserLevel" Multiplicity="1" />
+          <End Type="NPGuildModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLevel">
+              <PropertyRef Name="UserLevelId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NPGuildModelStoreContainer" CdmEntityContainer="NPGuildEntities">
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="NPGuildModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaidAttendances">
+            <EntityTypeMapping TypeName="NPGuildModel.RaidAttendance">
+              <MappingFragment StoreEntitySet="RaidAttendance">
+                <ScalarProperty Name="RaidAttendanceId" ColumnName="RaidAttendanceId" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Flagged" ColumnName="Flagged" />
+                <ScalarProperty Name="DumpTime" ColumnName="DumpTime" />
+                <ScalarProperty Name="DKP" ColumnName="DKP" />
+                <ScalarProperty Name="Include" ColumnName="Include" />
+                <ScalarProperty Name="Processed" ColumnName="Processed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLevels">
+            <EntityTypeMapping TypeName="NPGuildModel.UserLevel">
+              <MappingFragment StoreEntitySet="UserLevels">
+                <ScalarProperty Name="UserLevelId" ColumnName="UserLevelId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="NPGuildModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserLevelId" ColumnName="UserLevelId" />
+                <ScalarProperty Name="CharacterName" ColumnName="CharacterName" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
