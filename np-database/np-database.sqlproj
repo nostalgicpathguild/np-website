@@ -65,5 +65,14 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\RaidAttendance.sql" />
+    <Build Include="dbo\Tables\Posts.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\UserLevels.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="np-database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="np-database.publish.xml" />
   </ItemGroup>
 </Project>
