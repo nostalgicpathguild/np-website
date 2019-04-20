@@ -41,9 +41,49 @@ namespace np_website.Controllers
         }
 
         [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(MemberLoginModel viewModel)
+        {
+            try
+            {
+
+                if (ModelState.IsValid)
+                {
+                    if (viewModel.Login())
+                        return RedirectToAction("Index", "Home");
+                    else
+                        throw new Exception("Invalid username or password");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                while (ex != null)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    ex = ex.InnerException;
+                }
+            }
+
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult AccountCreated()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
