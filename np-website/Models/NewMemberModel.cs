@@ -38,6 +38,9 @@ namespace np_website.Models
         {
             using (var db = new Database.NPGuildEntities())
             {
+                if (db.Users.Any(f => f.Email == Email))
+                    throw new Exception("There is already a member with that email!");
+
                 var member = new Database.User()
                 {
                     Email = Email,

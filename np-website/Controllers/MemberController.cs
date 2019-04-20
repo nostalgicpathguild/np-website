@@ -18,10 +18,23 @@ namespace np_website.Controllers
         [HttpPost]
         public ActionResult Create(NewMemberModel viewModel)
         {
-            if (ModelState.IsValid)
+            try
             {
-                viewModel.CreateMember();
-                return RedirectToAction("AccountCreated");
+
+                if (ModelState.IsValid)
+                {
+                    viewModel.CreateMember();
+                    return RedirectToAction("AccountCreated");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                while(ex != null)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    ex = ex.InnerException;
+                }
             }
 
             return View();
