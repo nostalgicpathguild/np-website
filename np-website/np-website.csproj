@@ -151,6 +151,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Database\NPGuild.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -181,11 +182,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DeletePostViewModel.cs" />
+    <Compile Include="Models\EditPostModel.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberLoginModel.cs" />
     <Compile Include="Models\NewMemberModel.cs" />
+    <Compile Include="Models\NewPostModel.cs" />
+    <Compile Include="Models\PostImageModel.cs" />
+    <Compile Include="Models\PostListModel.cs" />
+    <Compile Include="Models\PostModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\MySession.cs" />
+    <Compile Include="SiteAuthorize.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -248,6 +257,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-timezone-with-data-10-year-range.min.js" />
+    <Content Include="Scripts\moment-timezone-with-data-1970-2030.min.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -320,6 +332,8 @@
     <Content Include="Scripts\tinymce\plugins\print\plugin.min.js" />
     <Content Include="Scripts\tinymce\plugins\quickbars\plugin.js" />
     <Content Include="Scripts\tinymce\plugins\quickbars\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\responsivefilemanager\img\insertfile.gif" />
+    <Content Include="Scripts\tinymce\plugins\responsivefilemanager\plugin.min.js" />
     <Content Include="Scripts\tinymce\plugins\save\plugin.js" />
     <Content Include="Scripts\tinymce\plugins\save\plugin.min.js" />
     <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.js" />
@@ -402,9 +416,14 @@
     <Content Include="Views\Member\Create.cshtml" />
     <Content Include="Views\Member\AccountCreated.cshtml" />
     <Content Include="Views\Member\Login.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Post\New.cshtml" />
+    <Content Include="Views\Post\Delete.cshtml" />
+    <Content Include="Views\Post\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

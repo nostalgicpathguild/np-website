@@ -1,4 +1,5 @@
-﻿using System;
+﻿using np_website.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,11 @@ namespace np_website.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var viewModel = new HomeViewModel();
+
+            viewModel.Posts = PostModel.GetPosts();
+
+            return View(viewModel);
         }
 
         public ActionResult About()

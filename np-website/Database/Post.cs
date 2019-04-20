@@ -18,6 +18,9 @@ namespace np_website.Database
         public System.DateTime TimeStamp { get; set; }
         public string Content { get; set; }
         public int AuthorId { get; set; }
+        public string Title { get; set; }
+        public Nullable<System.DateTime> EditedDateTime { get; set; }
+        public bool Removed { get; set; }
     
         public virtual User User { get; set; }
     }

@@ -38,6 +38,7 @@ namespace np_website.Models
                     Resources.MySession.Email = Email;
                     Resources.MySession.CharacterName = member.CharacterName;
                     Resources.MySession.UserLevel = member.UserLevelId;
+                    Resources.MySession.UserId = member.UserId;
 
                     return true;
                 }

@@ -20,7 +20,9 @@ namespace np_website
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/moment-with-locales.min.js",
+                      "~/Scripts/moment-timezone-with-data-10-year-range.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.darkly.min.css",

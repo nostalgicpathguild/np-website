@@ -13,6 +13,9 @@
           <Property Name="TimeStamp" Type="datetime" Nullable="false" />
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="EditedDateTime" Type="datetime" />
+          <Property Name="Removed" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="RaidAttendance">
           <Key>
@@ -91,16 +94,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NPGuildModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Post">
-          <Key>
-            <PropertyRef Name="PostId" />
-          </Key>
-          <Property Name="PostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AuthorId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="NPGuildModel.FK_Posts_Author" FromRole="Post" ToRole="User" />
-        </EntityType>
         <EntityType Name="RaidAttendance">
           <Key>
             <PropertyRef Name="RaidAttendanceId" />
@@ -127,17 +120,17 @@
           <NavigationProperty Name="Users" Relationship="NPGuildModel.FK_Users_UserLevel" FromRole="UserLevel" ToRole="User" />
         </EntityType>
         <EntityContainer Name="NPGuildEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Posts" EntityType="Self.Post" />
           <EntitySet Name="RaidAttendances" EntityType="Self.RaidAttendance" />
           <EntitySet Name="UserLevels" EntityType="Self.UserLevel" />
           <EntitySet Name="Users" EntityType="NPGuildModel.User" />
-          <AssociationSet Name="FK_Posts_Author" Association="NPGuildModel.FK_Posts_Author">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Post" EntitySet="Posts" />
-          </AssociationSet>
           <AssociationSet Name="FK_Users_UserLevel" Association="NPGuildModel.FK_Users_UserLevel">
             <End Role="UserLevel" EntitySet="UserLevels" />
             <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Posts" EntityType="NPGuildModel.Post" />
+          <AssociationSet Name="FK_Posts_Author" Association="NPGuildModel.FK_Posts_Author">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Post" EntitySet="Posts" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="User">
@@ -150,8 +143,33 @@
           <Property Name="PasswordSalt" Type="Binary" Nullable="false" MaxLength="1024" FixedLength="false" />
           <Property Name="CharacterName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserLevelId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Posts" Relationship="NPGuildModel.FK_Posts_Author" FromRole="User" ToRole="Post" />
           <NavigationProperty Name="UserLevel" Relationship="NPGuildModel.FK_Users_UserLevel" FromRole="User" ToRole="UserLevel" />
+          <NavigationProperty Name="Posts" Relationship="NPGuildModel.FK_Posts_Author" FromRole="User" ToRole="Post" />
+        </EntityType>
+        <Association Name="FK_Users_UserLevel">
+          <End Type="NPGuildModel.UserLevel" Role="UserLevel" Multiplicity="1" />
+          <End Type="NPGuildModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLevel">
+              <PropertyRef Name="UserLevelId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="NPGuildModel.FK_Posts_Author" FromRole="Post" ToRole="User" />
+          <Property Name="Removed" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_Posts_Author">
           <End Type="NPGuildModel.User" Role="User" Multiplicity="1" />
@@ -165,34 +183,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Users_UserLevel">
-          <End Type="NPGuildModel.UserLevel" Role="UserLevel" Multiplicity="1" />
-          <End Type="NPGuildModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserLevel">
-              <PropertyRef Name="UserLevelId" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="UserLevelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="NPGuildModelStoreContainer" CdmEntityContainer="NPGuildEntities">
-          <EntitySetMapping Name="Posts">
-            <EntityTypeMapping TypeName="NPGuildModel.Post">
-              <MappingFragment StoreEntitySet="Posts">
-                <ScalarProperty Name="PostId" ColumnName="PostId" />
-                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="RaidAttendances">
             <EntityTypeMapping TypeName="NPGuildModel.RaidAttendance">
               <MappingFragment StoreEntitySet="RaidAttendance">
@@ -228,6 +224,19 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="NPGuildModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="Removed" ColumnName="Removed" />
+                <ScalarProperty Name="EditedDateTime" ColumnName="EditedDateTime" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -25,9 +25,9 @@ namespace np_website.Database
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<RaidAttendance> RaidAttendances { get; set; }
         public virtual DbSet<UserLevel> UserLevels { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
     }
 }

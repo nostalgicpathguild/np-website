@@ -8,6 +8,21 @@ namespace np_website.Resources
     public static class MySession
     {
 
+        public static int? UserId
+        {
+            get
+            {
+                if (HttpContext.Current.Session["UserId"] != null && int.TryParse(HttpContext.Current.Session["UserId"].ToString(), out int userLevel))
+                    return userLevel;
+                else
+                    return null; // Not Logged In
+            }
+            set
+            {
+                HttpContext.Current.Session["UserId"] = value;
+            }
+        }
+
         public static int UserLevel
         {
             get

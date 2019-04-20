@@ -1,0 +1,26 @@
+﻿@model np_website.Models.DeletePostViewModel
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Remove Post</h2>
+
+@using (Html.BeginForm())
+{
+    if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Any()))
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>There was a problem</strong>
+            @Html.ValidationSummary(false, "Errors: ")
+        </div>
+    }
+
+    @Html.HiddenFor(m => m.PostId)
+    @Html.HiddenFor(m => m.Title)
+
+    <p>Are you sure you want to delete the post @Model.Title?</p>
+    <button type="submit" name="action" value="yes" class="btn btn-danger">Yes, delete this post</button>
+    <button type="submit" name="action" value="no" class="btn btn-primary">No, back to the list</button>
+
+}
