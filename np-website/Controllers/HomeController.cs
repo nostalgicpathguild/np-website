@@ -14,6 +14,7 @@ namespace np_website.Controllers
             var viewModel = new HomeViewModel();
 
             viewModel.Posts = PostModel.GetPosts();
+            viewModel.Events = EventItemModel.GetItems();
 
             return View(viewModel);
         }

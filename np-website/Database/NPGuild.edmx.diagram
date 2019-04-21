@@ -11,6 +11,7 @@
         <AssociationConnector Association="NPGuildModel.FK_Users_UserLevel" />
         <EntityTypeShape EntityType="NPGuildModel.Post" Width="1.5" PointX="5.25" PointY="1.125" />
         <AssociationConnector Association="NPGuildModel.FK_Posts_Author" />
+        <EntityTypeShape EntityType="NPGuildModel.Event" Width="1.5" PointX="3.375" PointY="4.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

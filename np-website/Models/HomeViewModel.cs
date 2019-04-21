@@ -8,6 +8,7 @@ namespace np_website.Models
     public class HomeViewModel
     {
         public List<PostModel> Posts { get; set; }
+        public List<EventItemModel> Events { get; set; }
 
     }
 }
