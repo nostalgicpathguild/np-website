@@ -53,7 +53,7 @@
             @foreach(var item in Model.Events)
             {
             <li>
-                <span class="moment-datetime-day">@item.EventDateTime.Value.ToString("s")</span> - @item.Description 
+                <span class="moment-datetime-day">@item.StartDate.Value.ToString("s")</span> - @item.Description 
                 @if(!string.IsNullOrWhiteSpace(item.Leader))
                 {
                     @:(@item.Leader on raid invites)

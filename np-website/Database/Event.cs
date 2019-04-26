@@ -15,7 +15,8 @@ namespace np_website.Database
     public partial class Event
     {
         public int EventId { get; set; }
-        public System.DateTime EventDateTime { get; set; }
+        public System.DateTime Start { get; set; }
+        public System.DateTime End { get; set; }
         public string Description { get; set; }
         public string Leader { get; set; }
         public bool Removed { get; set; }

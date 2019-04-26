@@ -35,7 +35,8 @@ namespace np_website.Models
                     {
                         var rec = db.Events.Find(item.EventId);
 
-                        rec.EventDateTime = item.EventDateTime.Value;
+                        rec.Start = item.StartDate.Value;
+                        rec.End = item.EndDate.Value;
                         rec.Description = item.Description;
                         rec.Leader = item.Leader;
 
@@ -45,7 +46,8 @@ namespace np_website.Models
                     {
                         var rec = new Database.Event()
                         {
-                            EventDateTime = item.EventDateTime.Value,
+                            Start = item.StartDate.Value,
+                            End = item.EndDate.Value,
                             Description = item.Description,
                             Leader = item.Leader,
                             Removed = false
