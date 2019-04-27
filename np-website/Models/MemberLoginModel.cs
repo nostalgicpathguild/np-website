@@ -40,6 +40,11 @@ namespace np_website.Models
                     Resources.MySession.UserLevel = member.UserLevelId;
                     Resources.MySession.UserId = member.UserId;
 
+                    var forumUser = db.ForumUsers.FirstOrDefault(f => f.UserName == member.CharacterName && f.Email == member.Email);
+
+                    Resources.MySession.aspnetforumUserID = forumUser.UserID;
+                    Resources.MySession.aspnetforumUserName = member.CharacterName;
+
                     return true;
                 }
                 else

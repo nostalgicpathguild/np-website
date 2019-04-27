@@ -54,6 +54,19 @@ namespace np_website.Models
                 db.Users.Add(member);
                 db.SaveChanges();
 
+                var forumUser = new Database.ForumUser()
+                {
+                    UserName = CharacterName,
+                    Email = Email,
+                    Password = System.Text.Encoding.Unicode.GetString(member.Password),
+                    RegistrationDate = DateTime.UtcNow,
+                    Disabled = false,
+                    ActivationCode = string.Empty
+                };
+
+                db.ForumUsers.Add(forumUser);
+                db.SaveChanges();
+
                 return member.UserId;
             }
         }
