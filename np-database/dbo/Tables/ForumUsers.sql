@@ -4,7 +4,7 @@
 	FirstName nvarchar(100) NULL,
 	LastName nvarchar(100) NULL,
 	Email nvarchar (50) NOT NULL ,
-	[Password] nvarchar (50) NOT NULL ,
+	[Password] nvarchar (MAX) NOT NULL ,
 	Homepage nvarchar (255) NULL ,
 	Interests nvarchar (255) NULL ,
 	PostsCount int NOT NULL DEFAULT 0,
