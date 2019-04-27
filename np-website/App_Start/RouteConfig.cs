@@ -12,6 +12,7 @@ namespace np_website
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("forum/{resource}.aspx/");
 
             routes.MapMvcAttributeRoutes();
 
