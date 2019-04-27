@@ -1,0 +1,59 @@
+﻿body {
+    background-color: #222222;
+}
+
+.header {
+    background-color: #404040;
+}
+
+    .header h2 a {
+        color: #d4d4d4;
+    }
+
+    .header a.curUsername {
+        color: #1a81c7;
+    }
+
+.forumcontent h1,
+.forumcontent h2 {
+    color: #7eacda;
+}
+
+.forumcontent h2 a {
+    color: #ffffff;
+}
+
+.forumcontent td {
+    border-color: #535758 !important;
+}
+
+.forumcontent hr {
+    color: #535758 !important;
+    background-color: #535758 !important;
+}
+
+.forumcontent table tr td {
+    background-color: #303030;
+}
+
+table.postlist,
+.forumcontent span,
+.forumcontent table {
+    color: #c3c3c3;
+}
+
+.forumcontent {
+    color: #b3b3b3;
+}
+
+/*#curuserTable img {
+    filter: brightness(2);
+}*/
+
+/*
+    #00bc8c - green
+    #303030
+    rgba(255,255,255,0.5)
+    #ffffff
+    #c3c3c3
+*/

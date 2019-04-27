@@ -9,6 +9,7 @@
 	<script src="jquery.jgrowl_minimized.js" type="text/javascript"></script>
 	<link href="jquery.jgrowl.css" rel="stylesheet" type="text/css" />
 	<link rel="alternate" type="application/rss+xml" title="recent posts" href="recent.aspx?rss=1" />
+    <link href="/Content/forum.css" rel="stylesheet" />
 	<meta name="viewport" content="width=device-width"> <%-- for mobile --%>
 	<asp:contentplaceholder id="ContentPlaceHolderHEAD" runat="server">
 	</asp:contentplaceholder>
