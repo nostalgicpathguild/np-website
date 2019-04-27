@@ -12,11 +12,11 @@
 
         @if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Any()))
         {
-        <div class="alert alert-dismissible alert-danger">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Please enter all required fields</strong>
-            @Html.ValidationSummary(false, "Errors: ")
-        </div>
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Please enter all required fields</strong>
+                @Html.ValidationSummary(false, "Errors: ")
+            </div>
         }
 
         @*<h4 class="card-title">Primary card title</h4>*@
@@ -31,6 +31,10 @@
                 @Html.LabelFor(m => m.Password)
                 @Html.TextBoxFor(m => m.Password, new { @type = "password", @class = "form-control" })
             </div>
+
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            <div class="g-recaptcha" data-sitekey="@np_website.Resources.AppSettings.GoogleReCaptchaSiteKey"></div>
+
             <button class="btn btn-success" type="submit">Login</button>
         }
     </div>

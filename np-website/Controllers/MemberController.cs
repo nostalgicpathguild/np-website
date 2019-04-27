@@ -21,6 +21,12 @@ namespace np_website.Controllers
             try
             {
 
+                var googleRecaptcha = new Models.GoogleReCaptchaValidator(Request);
+                if (!googleRecaptcha.ValidateRequest())
+                {
+                    throw new Exception("Please fill out the reCAPTCHA");
+                }
+
                 if (ModelState.IsValid)
                 {
                     viewModel.CreateMember();
@@ -51,6 +57,12 @@ namespace np_website.Controllers
         {
             try
             {
+
+                var googleRecaptcha = new Models.GoogleReCaptchaValidator(Request);
+                if (!googleRecaptcha.ValidateRequest())
+                {
+                    throw new Exception("Please fill out the reCAPTCHA");
+                }
 
                 if (ModelState.IsValid)
                 {
