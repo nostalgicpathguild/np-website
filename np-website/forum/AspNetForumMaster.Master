@@ -43,8 +43,8 @@
 						<img runat="server" id="imgAvatar" class="avatar" enableviewstate="false" src="images/guestavatar.gif" onerror="this.src='images/guestavatar.gif'" alt="guest avatar" style="float: left; margin-right: 5px;width:32px;height:32px;border-radius:32px" />
 						<a href="" id="viewProfileLink" class="curUsername" runat="server" title="edit my profile" enableviewstate="false"></a>
 						<br />
-							<span class="mobilehidden"><a href="editprofile.aspx"><%= aspnetforum.Resources.various.MyProfile %></a> |</span>
-						<a href="logout.aspx" id="logoutLink" runat="server" enableviewstate="false"><%= aspnetforum.Resources.various.SignOut %></a>
+							<span class="mobilehidden"><a href="editprofile.aspx"><%= aspnetforum.Resources.various.MyProfile %></a> | </span>
+						    <a href="/member/logout" id="logoutLink" runat="server" enableviewstate="false"><%= aspnetforum.Resources.various.SignOut %></a>
 						</span>
 					</div>
 
@@ -64,7 +64,7 @@
 				</div>
 			<!-- ############## -->
 			<!-- comment (or remove) the following section if you use single sign-on programmatically (and you don't need login-password inputs etc)-->
-			<div id="loginTable" runat="server" class="logininfo" enableviewstate="false">
+<%--			<div id="loginTable" runat="server" class="logininfo" enableviewstate="false">
 				<div style="margin-top: 20px;" class="mobilehidden">
 				<a href="register.aspx" class="registerLink"><%= aspnetforum.Resources.various.Register %></a><br/>
 				<a href="lostpassword.aspx" class="lostpswLink"><%= aspnetforum.Resources.various.LostPassword %></a>
@@ -83,7 +83,7 @@
 					<img src="images/twitter.png" alt="sign in with Twitter" /></a><a href="javascript:void(0)" id="aFacebook" runat="server" enableviewstate="false" title="Login with Facebook" onclick="FbLogin()">
 					<img src="images/facebook.png" alt="sign in with facebook" /></a>&nbsp;</span>
 					</div>
-			</div>
+			</div>--%>
 			<!-- ################## -->
 		</div></div>
 
