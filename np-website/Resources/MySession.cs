@@ -53,6 +53,36 @@ namespace np_website.Resources
             }
         }
 
+        public static int aspnetforumUserID
+        {
+            get
+            {
+                if (HttpContext.Current.Session["aspnetforumUserID"] != null && int.TryParse(HttpContext.Current.Session["aspnetforumUserID"].ToString(), out int aspnetforumUserID))
+                    return aspnetforumUserID;
+                else
+                    return 0; // Not Logged In
+            }
+            set
+            {
+                HttpContext.Current.Session["aspnetforumUserID"] = value;
+            }
+        }
+
+        public static string aspnetforumUserName
+        {
+            get
+            {
+                if (HttpContext.Current.Session["aspnetforumUserName"] != null)
+                    return HttpContext.Current.Session["aspnetforumUserName"].ToString();
+                else
+                    return "Unknown"; // Guest
+            }
+            set
+            {
+                HttpContext.Current.Session["aspnetforumUserName"] = value;
+            }
+        }
+
         public static string Email
         {
             get
