@@ -22,7 +22,7 @@
 
             dayLabels.each( function ( i ) {
                 var dateTime = moment( $( this ).text() );
-                $( this ).text( dateTime.format( 'dddd Do') ).attr( 'title', dateTime.format( 'MMMM Do YYYY, h:mm:ss a' ) );
+                $( this ).text( dateTime.format( 'dddd Do' ) ).attr( 'title', dateTime.format( 'MMMM Do YYYY, h:mm:ss a' ) );
             } );
 
         } );
@@ -30,11 +30,16 @@
     </script>
 }
 
-<div class="jumbotron">
-    <h1>Nostalgic Path</h1>
-    <p class="lead">Some text here to briefly describe our guild.</p>
-    @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
-</div>
+@section banner {
+    <div id="banner">
+
+    </div>
+}
+
+@*<div class="jumbotron">
+        <h1>Nostalgic Path</h1>
+        <p class="lead">Some text here to briefly describe our guild.</p>
+    </div>*@
 
 <div class="row">
     <div class="col-md-4">
@@ -50,37 +55,37 @@
     <div class="col-md-4">
         <h3>Schedule</h3>
         <ul>
-            @foreach(var item in Model.Events)
+            @foreach (var item in Model.Events)
             {
-            <li>
-                <span class="moment-datetime-day">@item.StartDate.Value.ToString("s")</span> - @item.Description 
-                @if(!string.IsNullOrWhiteSpace(item.Leader))
-                {
-                    @:(@item.Leader on raid invites)
-                }
-            </li>
+                <li>
+                    <span class="moment-datetime-day">@item.StartDate.Value.ToString("s")</span> - @item.Description
+                    @if (!string.IsNullOrWhiteSpace(item.Leader))
+                    {
+                        @:(@item.Leader on raid invites)
+                    }
+                </li>
             }
             @*<li>Monday the 20th - PoP Tiers 1-3</li>
-            <li>Monday the 20th - PoP Tiers 1-3</li>
-            <li>Monday the 20th - PoP Tiers 1-3</li>
-            <li>Monday the 20th - PoP Tiers 1-3</li>
-            <li>Monday the 20th - PoP Tiers 1-3</li>
-            <li>Monday the 20th - PoP Tiers 1-3</li>
-            <li>Monday the 20th - PoP Tiers 1-3</li>*@
+                <li>Monday the 20th - PoP Tiers 1-3</li>
+                <li>Monday the 20th - PoP Tiers 1-3</li>
+                <li>Monday the 20th - PoP Tiers 1-3</li>
+                <li>Monday the 20th - PoP Tiers 1-3</li>
+                <li>Monday the 20th - PoP Tiers 1-3</li>
+                <li>Monday the 20th - PoP Tiers 1-3</li>*@
         </ul>
         @*<p>Something about why we still link this? This space could be used for other things.</p>*@
         @*<p><a class="btn btn-default" target="_blank" href="https://docs.google.com/spreadsheets/d/1SPklKpeklXMy6zLDSam4aEcfjY2DJmK30Q9AUSGAcTg">View Progression &raquo;</a></p>*@
     </div>
 </div>
 
-@foreach(var post in Model.Posts)
+@foreach (var post in Model.Posts)
 {
     <h1>@post.Title</h1>
     <small>
         By @post.Author <span class="moment-datetime">@post.PostDate.ToString("u")</span>
-        @if(post.EditedDate.HasValue)
+        @if (post.EditedDate.HasValue)
         {
-           <i> edited <span class="moment-datetime">@post.EditedDate.Value.ToString("u")</span></i>
+            <i> edited <span class="moment-datetime">@post.EditedDate.Value.ToString("u")</span></i>
         }
     </small>
     <div class="content">
