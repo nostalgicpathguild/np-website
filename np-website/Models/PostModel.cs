@@ -13,7 +13,7 @@ namespace np_website.Models
         public DateTime PostDate { get; set; }
         public DateTime? EditedDate { get; set; }
 
-        public static List<PostModel> GetPosts()
+        public static (int, List<PostModel>) GetPosts(int pageIndex, int recsPerPage)
         {
             using (var db = new Database.NPGuildEntities())
             {
@@ -28,7 +28,11 @@ namespace np_website.Models
                                 EditedDate = p.EditedDateTime
                             };
 
-                return posts.OrderByDescending(f => f.PostDate).ToList();
+                var maxPages = (int)Math.Ceiling((decimal)posts.Count() / recsPerPage);
+                pageIndex = pageIndex > maxPages ? maxPages : pageIndex;
+                pageIndex = pageIndex < 0 ? 0 : pageIndex;
+
+                return (maxPages, posts.OrderByDescending(f => f.PostDate).Skip(pageIndex * recsPerPage).Take(recsPerPage).ToList());
             }
         }
 
