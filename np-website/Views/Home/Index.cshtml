@@ -25,6 +25,16 @@
                 $( this ).text( dateTime.format( 'dddd Do' ) ).attr( 'title', dateTime.format( 'MMMM Do YYYY, h:mm:ss a' ) );
             } );
 
+
+            var timeLabels = $( '.moment-datetime-time' );
+
+            timeLabels.each( function ( i ) {
+                var dateTime = moment( $( this ).text() );
+                $( this ).text( dateTime.format( 'h:mm a' ) + ' EST' );
+            } );
+
+            $( 'table.schedule-list tr' ).css( 'visibility', 'visible' );
+
         } );
 
     </script>
@@ -36,45 +46,22 @@
     </div>
 }
 
-@*<div class="jumbotron">
-        <h1>Nostalgic Path</h1>
-        <p class="lead">Some text here to briefly describe our guild.</p>
-    </div>*@
 
 <div class="row">
-    <div class="col-md-4">
-        <h3>Discord</h3>
-        <p>Brief description of discord rules.</p>
-        <p><a class="btn btn-default" target="_blank" href="https://discord.gg/xevAAxB">Join &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h3>DKP Sheet</h3>
-        <p>A short description made about DKP or the sheet itself.</p>
-        <p><a class="btn btn-default" target="_blank" href="https://docs.google.com/spreadsheets/d/1I66SuC4grC0NOi-uu_INqy99juIiSXIFvAsPFzvgq4s">View DKP &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h3>Schedule</h3>
-        <ul>
-            @foreach (var item in Model.Events)
-            {
-                <li>
-                    <span class="moment-datetime-day">@item.StartDate.Value.ToString("s")</span> - @item.Description
-                    @if (!string.IsNullOrWhiteSpace(item.Leader))
-                    {
-                        @:(@item.Leader on raid invites)
-                    }
-                </li>
-            }
-            @*<li>Monday the 20th - PoP Tiers 1-3</li>
-                <li>Monday the 20th - PoP Tiers 1-3</li>
-                <li>Monday the 20th - PoP Tiers 1-3</li>
-                <li>Monday the 20th - PoP Tiers 1-3</li>
-                <li>Monday the 20th - PoP Tiers 1-3</li>
-                <li>Monday the 20th - PoP Tiers 1-3</li>
-                <li>Monday the 20th - PoP Tiers 1-3</li>*@
-        </ul>
-        @*<p>Something about why we still link this? This space could be used for other things.</p>*@
-        @*<p><a class="btn btn-default" target="_blank" href="https://docs.google.com/spreadsheets/d/1SPklKpeklXMy6zLDSam4aEcfjY2DJmK30Q9AUSGAcTg">View Progression &raquo;</a></p>*@
+    <div class="col-md-12 schedule-container">
+        <center>
+            <h3>Schedule</h3>
+            <table class="schedule-list">
+                @foreach (var item in Model.Events)
+                {
+                    <tr style="visibility: hidden;">
+                        <td><span class="moment-datetime-day">@item.StartDate.Value.ToString("s")</span></td>
+                        <td><span class="moment-datetime-time">@item.StartDate.Value.ToString("s")</span></td>
+                        <td>@item.Description <small>@item.Leader on raid invites</small></td>
+                    </tr>
+                }
+            </table>
+        </center>
     </div>
 </div>
 
@@ -92,3 +79,55 @@
         @Html.Raw(post.Content)
     </div>
 }
+
+@{ 
+    var paginationIndex = Model.PostsPageIndex;
+    var paginationEndIndex = 0;
+
+    if (paginationIndex > 1)
+    {
+        paginationIndex -= 2;
+    }
+    else if (paginationIndex < 2)
+    {
+        paginationIndex = 0;
+    }
+
+
+    var paginationCount = 5;
+    if (paginationIndex + paginationCount > Model.PostPageCount)
+    {
+        paginationIndex = Model.PostPageCount - paginationCount;
+        paginationIndex = paginationIndex < 0 ? 0 : paginationIndex;
+        paginationEndIndex = paginationIndex + paginationCount;
+        //paginationEndIndex = Model.PostPageCount - paginationIndex;
+    }
+    else
+    {
+        paginationEndIndex = paginationIndex + paginationCount;
+    }
+
+    paginationEndIndex = paginationEndIndex > Model.PostPageCount ? Model.PostPageCount : paginationIndex;
+}
+
+    <nav aria-label="Page navigation example primary">
+        <ul class="pagination pg-blue">
+
+            @if (Model.PostsPageIndex > 0) {<li class="page-item"><a class="page-link" href="@($"/posts/{Model.PostsPageIndex - 1}")">Previous</a></li>}
+            else {<li class="page-item"><a class="page-link disabled">Previous</a></li>}
+
+            @for(var i = paginationIndex; i < paginationEndIndex; i++)
+            {
+                if (i == Model.PostsPageIndex) {
+                    <li class="page-item"><a class="page-link active">@(i + 1)</a></li>
+                }
+                else {
+                    <li class="page-item"><a class="page-link" href="@($"/posts/{i}")">@(i + 1)</a></li>
+                }
+
+            }
+            
+            @if (Model.PostsPageIndex < Model.PostPageCount - 1) {<li class="page-item"><a class="page-link" href="@($"/posts/{Model.PostsPageIndex + 1}")">Next</a></li>}
+            else { <li class="page-item"><a class="page-link disabled">Next</a></li> }
+        </ul>
+    </nav>

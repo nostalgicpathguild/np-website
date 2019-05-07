@@ -13,10 +13,22 @@ namespace np_website.Controllers
         {
             var viewModel = new HomeViewModel();
 
-            viewModel.Posts = PostModel.GetPosts();
+            (viewModel.PostPageCount, viewModel.Posts) = PostModel.GetPosts(viewModel.PostsPageIndex, viewModel.PostsRecsPerPage);
             viewModel.Events = EventItemModel.GetItems();
 
             return View(viewModel);
+        }
+
+        [Route("posts/{id:int}")]
+        public ActionResult IndexByPage(int id)
+        {
+            var viewModel = new HomeViewModel();
+
+            viewModel.PostsPageIndex = id;
+            (viewModel.PostPageCount, viewModel.Posts) = PostModel.GetPosts(id, viewModel.PostsRecsPerPage);
+            viewModel.Events = EventItemModel.GetItems();
+
+            return View("Index", viewModel);
         }
 
         public ActionResult About()
