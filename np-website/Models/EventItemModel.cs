@@ -49,6 +49,8 @@ namespace np_website.Models
                 var easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
                 start += easternZone.BaseUtcOffset;
 
+                start.AddHours(-12);
+
                 var data = from p in db.Events
                            where p.Removed == false && p.Start > start
                            select new

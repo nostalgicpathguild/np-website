@@ -29,6 +29,10 @@ namespace np_website.Controllers
 
                 viewModel.Events.Add(new EventItemModel());
             }
+            else if (action == "motd")
+            {
+                viewModel.Motd = viewModel.GenerateMotd();
+            }
             else if (action == "save")
             {
                 try

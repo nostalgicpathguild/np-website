@@ -37,6 +37,7 @@
 {
     <button type="submit" name="action" value="new" class="btn btn-primary cancel">New Event</button>
     <button type="submit" name="action" value="save" class="btn btn-primary">Save Changes</button>
+    <button type="submit" name="action" value="motd" class="btn btn-primary">Get MOTD</button>
 
     if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Any()))
     {
@@ -47,10 +48,18 @@
         </div>
     }
 
+    if(!string.IsNullOrWhiteSpace(Model.Motd))
+    {
+        <div>
+            @Html.TextAreaFor(m => Model.Motd, new { @class = "form-control no-max-width" })
+        </div>
+    }
+
     <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">Date</th>
+                <th scope="col">End</th>
                 <th scope="col">Description</th>
                 <th scope="col">Leader</th>
                 <th scope="col">Date</th>
@@ -62,14 +71,20 @@
             {
                 <tr>
                     <td>
-                        <div class="input-group date date-time-picker" id="@($"datetimepicker{i}")" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#@($"datetimepicker{i}")" id="@($"Events_{i}__StartDate")" name="@($"Events[{i}].StartDate")" value="@(Model.Events[i].StartDate.HasValue ? Model.Events[i].StartDate.Value.ToString("MM/dd/yyyy h:mm tt") : string.Empty)" />
-                            <div class="input-group-append" data-target="#@($"datetimepicker{i}")" data-toggle="datetimepicker">
+                        <div class="input-group date date-time-picker" id="@($"datetimepicker_start_{i}")" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#@($"datetimepicker_start_{i}")" id="@($"Events_{i}__StartDate")" name="@($"Events[{i}].StartDate")" value="@(Model.Events[i].StartDate.HasValue ? Model.Events[i].StartDate.Value.ToString("MM/dd/yyyy h:mm tt") : string.Empty)" />
+                            <div class="input-group-append" data-target="#@($"datetimepicker_start_{i}")" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
-
-                        @*@Html.TextBoxFor(m => Model.Events[i].StartDate, "{0:MM/dd/yyyy h:mm tt}", new { @class = "date-picker form-control" })*@
+                    </td>
+                    <td>
+                        <div class="input-group date date-time-picker" id="@($"datetimepicker_end_{i}")" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#@($"datetimepicker_end_{i}")" id="@($"Events_{i}__EndDate")" name="@($"Events[{i}].EndDate")" value="@(Model.Events[i].EndDate.HasValue ? Model.Events[i].EndDate.Value.ToString("MM/dd/yyyy h:mm tt") : string.Empty)" />
+                            <div class="input-group-append" data-target="#@($"datetimepicker_end_{i}")" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
                     </td>
                     <td>@Html.TextBoxFor(m => Model.Events[i].Description, new { @class = "form-control" })</td>
                     <td>@Html.TextBoxFor(m => Model.Events[i].Leader, new { @class = "form-control" })</td>

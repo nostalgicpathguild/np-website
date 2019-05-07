@@ -8,6 +8,8 @@ namespace np_website.Models
     public class EventViewModel
     {
         public List<EventItemModel> Events { get; set; }
+        public string Motd { get; set; }
+
 
         public void SaveChanges()
         {
@@ -16,7 +18,7 @@ namespace np_website.Models
                 var allEventIds = db.Events.Select(f => f.EventId);
                 var recsToRemove = new List<int>();
 
-                foreach(var id in allEventIds)
+                foreach (var id in allEventIds)
                     if (!Events.Any(f => f.EventId == id))
                         recsToRemove.Add(id);
 
@@ -63,5 +65,26 @@ namespace np_website.Models
             }
         }
 
+
+        public string GenerateMotd()
+        {
+            var items = EventItemModel.GetItems();
+            var motd = string.Empty;
+
+            foreach (var e in items)
+            {
+                var start = e.StartDate.Value;
+                var suffix = (start.Day % 10 == 1 && start.Day != 11) ? "st"
+                           : (start.Day % 10 == 2 && start.Day != 12) ? "nd"
+                           : (start.Day % 10 == 3 && start.Day != 13) ? "rd"
+                           : "th";
+                var time = start.Minute == 0 ? start.ToString("htt") : start.ToString("h:mtt");
+
+                motd += $" || {start.ToString("ddd")} {start.Day}{suffix} {time} est - {e.Description} ({e.Leader} on RI)";
+
+            }
+
+            return motd;
+        }
     }
 }
