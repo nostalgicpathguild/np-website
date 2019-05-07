@@ -14,7 +14,7 @@
 
 <asp:repeater id="rptConversationsList" runat="server" EnableViewState="False" OnItemCommand="rptConversationsList_ItemCommand">
 	<HeaderTemplate>
-		<table width="100%" class="roundedborder biglist">
+		<table width="100%" class="topiclist">
 		<tr>
 			<th></th>
 			<th nowrap="nowrap"><%= various.From %></th>

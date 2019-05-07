@@ -35,7 +35,7 @@
 
 <asp:repeater id="rptSubForumsList" runat="server" EnableViewState="False">
 	<HeaderTemplate>
-		<table width="100%" class="biglist roundedborder"><tr><th colspan="3"><%= various.SubForums %></th></tr>
+		<table width="100%" class="topiclist"><tr><th colspan="3"><%= various.SubForums %></th></tr>
 		<tbody>
 	</HeaderTemplate>
 	<ItemTemplate>
@@ -67,7 +67,7 @@
 	
 	<asp:repeater id="rptTopicsList" runat="server" EnableViewState="False" OnItemDataBound="rptTopicsList_ItemDataBound" OnItemCommand="rptTopicsList_ItemCommand">
 		<HeaderTemplate>
-			<table width="100%" class="roundedborder biglist">
+			<table width="100%" class="topiclist">
 			<tr>
 				<th></th>
 				<th nowrap="nowrap"><%= various.LatestPost %></th>
@@ -78,7 +78,7 @@
 		</HeaderTemplate>
 		<ItemTemplate>
 			<tr <%# Container.ItemType == ListItemType.AlternatingItem ? " class='altItem'" : "" %>>
-				<td style="position:relative;width:70%">
+				<td style="position:relative;width:70%; padding-left: 25px;">
 					<img alt="topic" id="imgTopic" runat="server" enableviewstate="false" style="position:absolute;left:-25px" />
 					<span class="topictools mobilehidden">
 						<asp:LinkButton id="btnModeratorApprove" Runat="server" Visible="False" CommandName="approve" CommandArgument='<%# Eval("TopicID") %>'><img src="images/approve.png" /></asp:LinkButton>

@@ -1,4 +1,4 @@
-<%@ Page language="c#" Codebehind="messages.aspx.cs" AutoEventWireup="True" Inherits="aspnetforum.messages" MasterPageFile="AspNetForumMaster.Master" %>
+<%@ Page language="c#" Codebehind="messages.aspx.cs" AutoEventWireup="True" Inherits="aspnetforum.messages" MasterPageFile="AspNetForumMaster.Master" ValidateRequest="false" %>
 <%@ Import Namespace="aspnetforum.Resources" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolderHEAD" ID="AspNetForumHead" runat="server">
@@ -66,7 +66,7 @@
 
 <asp:repeater id="rptMessagesList" runat="server" EnableViewState="False" OnItemDataBound="rptMessagesList_ItemDataBound" OnItemCommand="rptMessagesList_ItemCommand">
 	<HeaderTemplate>
-		<table style="width:100%;" class="roundedborder postlist">
+		<table style="width:100%;" class="postlist">
 		<tbody>
 	</HeaderTemplate>
 	<ItemTemplate>
@@ -82,7 +82,7 @@
 				<%# aspnetforum.Utils.User.DisplayUserInfo(Eval("UserID"), Eval("UserName"), Eval("PostsCount"), Eval("AvatarFileName"), _forumID, Eval("FirstName"), Eval("LastName"), Eval("UseGravatar"), Eval("Email"))%>
 			</div>
 			<asp:Literal ID="ltrBody" runat="server"></asp:Literal>
-			<%# aspnetforum.Utils.Formatting.FormatSignature(Eval("Signature").ToString())%>
+			<span class="signature"><%# aspnetforum.Utils.Formatting.FormatSignature(Eval("Signature").ToString())%></span>
 			<asp:Repeater ID="rptFiles" runat="server">
 			<HeaderTemplate>
 				<br /><br />
@@ -138,7 +138,7 @@
 		<button title="switch to source" type="button" onclick="wswgEditor.SwitchEditor()" style="background-image:url('images/icon_html.gif');"></button>
 	</div>
 	<div class="container iphone-textbox">
-		<asp:TextBox Rows="2" TextMode="MultiLine" Height="50" Width="100%" ID="tbQuickReply" runat="server" EnableViewState="false" onkeydown="return ProcessCtrlEnter(event);"></asp:TextBox>
+		<asp:TextBox Rows="2" TextMode="MultiLine" Height="200" Width="100%" ID="tbQuickReply" runat="server" EnableViewState="false" onkeydown="return ProcessCtrlEnter(event);"></asp:TextBox>
 	</div>
 </div>
 <asp:Button runat="server" ID="btnQuickReply" OnClick="btnQuickReply_Click" OnClientClick="wswgEditor.doCheck();" Text="quick reply" EnableViewState="false" meta:resourcekey="btnQuickReplyResource1" />
@@ -147,7 +147,7 @@
 
 
 
-<div id="divLink" style="display:none;position:absolute;background-color:#ebebeb;padding:7px" class="roundedborder gray">
+<div id="divLink" style="display:none;position:absolute;background-color:#ebebeb;padding:7px" class="gray">
 share a link to this post<br />
 <input type="text" id="tbLink" size="60" /><br />
 <a href="javascript:void(0)" onclick="$('#divLink').hide()">close</a>

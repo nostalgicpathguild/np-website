@@ -12,7 +12,7 @@
 
 <asp:repeater id="rptTopicsList" runat="server" EnableViewState="False">
 	<HeaderTemplate>
-		<table width="100%" class="biglist roundedborder">
+		<table width="100%" class="">
 		<tr><th></th><th><%= aspnetforum.Resources.various.LatestPost %></th></tr>
 		<tbody>
 	</HeaderTemplate>

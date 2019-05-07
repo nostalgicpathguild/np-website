@@ -70,7 +70,7 @@ input:focus,select:focus,textarea:focus,button:focus {outline: none;}
 .forumcontent div.location h1 .postbutton a {font-size:15px;font-weight:bold}
 .forumcontent .topictools {visibility:hidden;float:right;margin-top:7px;}
 .forumcontent .topictools a {margin-right:20px;border:none}
-.forumcontent .biglist tr:hover .topictools {visibility:visible}
+.forumcontent .topiclist tr:hover .topictools {visibility:visible}
 .forumcontent .smalltoolbar { float:right; font-size:11px }
 .forumcontent .smalltoolbar a { margin-left:10px }
 

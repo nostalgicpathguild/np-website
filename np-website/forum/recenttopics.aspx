@@ -10,7 +10,7 @@
 	</div>
 	<asp:repeater id="rptTopicsList" runat="server" EnableViewState="False">
 		<HeaderTemplate>
-			<table width="100%" class="roundedborder biglist">
+			<table width="100%" class="">
 			<tr>
 				<th><h2><%= aspnetforum.Resources.various.RecentTopics %> <a href="recenttopics.aspx?rss=1" runat="server" id="rssLink" enableviewstate="false"><img alt="Recently updated topics - RSS" src="images/rss.png" /></a></h2></th>
 				<th nowrap="nowrap"><%= aspnetforum.Resources.various.LatestPost %></th>

@@ -5,7 +5,7 @@
 <asp:Content ContentPlaceHolderID="AspNetForumContentPlaceHolder" ID="AspNetForumContent" runat="server">
 	<asp:Repeater ID="rptGroupsList" Runat="server" EnableViewState="False" OnItemDataBound="rptGroupsList_ItemDataBound">
 		<ItemTemplate>
-			<table style="width:100%;" class="roundedborder biglist">
+			<table style="width:100%;" class="">
 				<tr><th colspan="2"><h2><%# Eval("GroupName") %></h2></th><th class="mobilehidden"><%= aspnetforum.Resources.various.Threads %></th><th class="mobilehidden"><%= aspnetforum.Resources.various.LatestPost %></th></tr>
 				<tbody>
 			<asp:repeater id="rptForumsList" runat="server" EnableViewState="False">

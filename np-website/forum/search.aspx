@@ -69,7 +69,7 @@ function ValidateSearch(source, arguments)
 
 <asp:repeater id="rptTopicsList" runat="server" EnableViewState="False">
 <HeaderTemplate>
-	<table width="100%" class="roundedborder biglist">
+	<table width="100%" class="">
 	<tr><th></th><th><%= aspnetforum.Resources.various.LatestPost %></th></tr>
 	<tbody>
 </HeaderTemplate>
