@@ -46,6 +46,45 @@ table.postlist,
     color: #b3b3b3;
 }
 
+    .forumcontent img {
+        max-width: 100%;
+    }
+
+    .forumcontent .signature img {
+        max-height: 200px;
+    }
+
+    .forumcontent .userinfo img.avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .forumcontent table tr.altItem td {
+        background-color: #2a2a2a;
+    }
+
+.roundedborder {
+    border-radius: 0 !important;
+}
+
+.forum-header {
+    background-image: url('/Content/Images/NP-Forum-Banner.png');
+    background-size: 940px;
+    background-repeat: no-repeat;
+    /*background-color: black;*/
+    background-position-x: center;
+    height: 80px;
+}
+
+/*.curUserInfo {
+    margin-right: 25px;
+}
+.unreadInfo {
+    margin-right: 450px !important;
+}*/
+.forumcontent td {
+    border:none;
+}
 /*#curuserTable img {
     filter: brightness(2);
 }*/
