@@ -1,5 +1,7 @@
 ﻿/**/
-
+html, body {
+    height: 100%
+}
 body {
     /*padding-top: 50px;*/
     padding-bottom: 20px;
@@ -20,7 +22,9 @@ h6 { }
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    margin-top: 50px;
+    /*margin-top: 50px;*/
+    padding-top: 50px;
+    background-color: #2e2e2e;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -45,16 +49,187 @@ nav.bg-light {
 #banner {
     position: relative;
     display: block;
-    height: 500px;
+    height: 240px;
     margin-top: -70px;
     left: 0;
     right: 0;
     background-image: url('Nostalgic Path Banner.png');
-    background-size: 1698px;
+    background-size: 100%;
     background-repeat: no-repeat;
     background-color: black;
     background-position-x: center;
+    background-position-y: 69px;
 }
 
+/*@media (min-width: 576px) {
+    #banner {
+        height: 292px;
+        background-size: 559px;
+        background-position-y: 69px;
+    }
+}
 
-.input-validation-error { border-color: #E74C3C; }
+@media (min-width: 768px) {
+    nav {
+        padding: 16px 16px !important;
+    }
+    #banner {
+        height: 325px;
+        background-size: 768px;
+        background-position-y: 69px;
+    }
+}
+
+@media (min-width: 992px) {
+    nav {
+        padding: 0px 16px !important;
+    }
+    #banner {
+        height: 342px;
+        background-size: 992px;
+        background-position-y: 32px;
+    }
+}
+
+@media (min-width: 1024px) {
+    nav {
+        padding: 5px 16px !important;
+    }
+
+    #banner {
+        height: 400px;
+        background-size: 1200px;
+        background-position-y: 22px;
+    }
+}
+
+@media (min-width: 1200px) {
+    nav {
+        padding: 5px 16px !important;
+    }
+    #banner {
+        height: 400px;
+        background-size: 1200px;
+        background-position-y: 22px;
+    }
+}
+
+@media (min-width: 1920px) {
+    #banner {
+        height: 600px;
+        background-size: 1920px;
+        background-position-y:unset;
+    }
+}*/
+
+@media (min-width: 576px) {
+    nav {
+        padding: 16px 16px !important;
+    }
+
+    #banner {
+        height: 325px;
+        background-size: 100%;
+        background-position-y: 69px;
+    }
+}
+
+@media (min-width: 768px) {
+    nav {
+        padding: 0px 16px !important;
+    }
+
+    #banner {
+        height: 334px;
+        background-size: 100%;
+        background-position-y: 32px;
+    }
+}
+
+@media (min-width: 992px) {
+    nav {
+        padding: 5px 16px !important;
+    }
+
+    #banner {
+        height: 400px;
+        background-size: 100%;
+        background-position-y: 22px;
+    }
+}
+
+@media (min-width: 1024px) {
+    nav {
+        padding: 5px 16px !important;
+    }
+
+    #banner {
+        height: 400px;
+        background-size: 100%;
+        background-position-y: 22px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #banner {
+        height: 474px;
+        background-size: 100%;
+        background-position-y: unset;
+    }
+}
+
+@media (min-width: 1520px) {
+    #banner {
+        height: 515px;
+        background-size: 100%;
+        background-position-y: unset;
+    }
+}
+
+@media (min-width: 1920px) {
+    #banner {
+        height: 600px;
+        background-size: 1920px;
+        background-position-y: unset;
+    }
+}
+
+.input-validation-error {
+    border-color: #E74C3C;
+}
+
+footer p {
+    margin-bottom: 0 !important;
+}
+
+ul.schedule-list li i {
+    font-size: 12px;
+    color: #b1b1b1;
+}
+
+table.schedule-list tr td {
+    padding: 1px 25px;
+}
+
+div.schedule-container {
+    margin-top: -30px;
+    margin-bottom: 30px;
+}
+
+.no-max-width {
+    max-width:unset !important;
+}
+
+.page-link:hover {
+    background-color: #313131;
+}
+
+.page-link {
+    background-color: #444;
+    /*cursor:pointer;*/
+}
+
+    .page-link.active {
+        background-color: #375a7f;
+        /*cursor:pointer;*/
+    }
