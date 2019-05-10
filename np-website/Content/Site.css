@@ -1,0 +1,246 @@
+﻿/**/
+html, body {
+    height: 100%
+}
+body {
+    /*padding-top: 50px;*/
+    padding-bottom: 20px;
+    background-color: #222222;
+    font-family: "Open Sans",Helvetica,Arial,Verdana,sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: Roboto, Arial, sans-serif; }
+
+h1 { }
+h2 { }
+h3 { font-weight:lighter; font-variant-caps:all-petite-caps; font-family: 'Quicksand',Helvetica,Arial,Verdana,sans-serif; }
+h4 { }
+h5 { }
+h6 { }
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    /*margin-top: 50px;*/
+    padding-top: 50px;
+    background-color: #2e2e2e;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+nav.bg-light {
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+#banner {
+    position: relative;
+    display: block;
+    height: 240px;
+    margin-top: -70px;
+    left: 0;
+    right: 0;
+    background-image: url('Nostalgic Path Banner.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: black;
+    background-position-x: center;
+    background-position-y: 69px;
+}
+
+table.schedule-list tr td {
+    padding: 1px 5px;
+}
+
+/*@media (min-width: 576px) {
+    #banner {
+        height: 292px;
+        background-size: 559px;
+        background-position-y: 69px;
+    }
+}
+
+@media (min-width: 768px) {
+    nav {
+        padding: 16px 16px !important;
+    }
+    #banner {
+        height: 325px;
+        background-size: 768px;
+        background-position-y: 69px;
+    }
+}
+
+@media (min-width: 992px) {
+    nav {
+        padding: 0px 16px !important;
+    }
+    #banner {
+        height: 342px;
+        background-size: 992px;
+        background-position-y: 32px;
+    }
+}
+
+@media (min-width: 1024px) {
+    nav {
+        padding: 5px 16px !important;
+    }
+
+    #banner {
+        height: 400px;
+        background-size: 1200px;
+        background-position-y: 22px;
+    }
+}
+
+@media (min-width: 1200px) {
+    nav {
+        padding: 5px 16px !important;
+    }
+    #banner {
+        height: 400px;
+        background-size: 1200px;
+        background-position-y: 22px;
+    }
+}
+
+@media (min-width: 1920px) {
+    #banner {
+        height: 600px;
+        background-size: 1920px;
+        background-position-y:unset;
+    }
+}*/
+
+@media (min-width: 576px) {
+    nav {
+        padding: 16px 16px !important;
+    }
+
+    #banner {
+        height: 325px;
+        background-size: 100%;
+        background-position-y: 69px;
+    }
+}
+
+@media (min-width: 768px) {
+    nav {
+        padding: 0px 16px !important;
+    }
+
+    #banner {
+        height: 334px;
+        background-size: 100%;
+        background-position-y: 32px;
+    }
+    table.schedule-list tr td {
+        padding: 1px 25px;
+    }
+}
+
+@media (min-width: 992px) {
+    nav {
+        padding: 5px 16px !important;
+    }
+
+    #banner {
+        height: 400px;
+        background-size: 100%;
+        background-position-y: 22px;
+    }
+}
+
+@media (min-width: 1024px) {
+    nav {
+        padding: 5px 16px !important;
+    }
+
+    #banner {
+        height: 400px;
+        background-size: 100%;
+        background-position-y: 22px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #banner {
+        height: 474px;
+        background-size: 100%;
+        background-position-y: unset;
+    }
+}
+
+@media (min-width: 1520px) {
+    #banner {
+        height: 515px;
+        background-size: 100%;
+        background-position-y: unset;
+    }
+}
+
+@media (min-width: 1920px) {
+    #banner {
+        height: 600px;
+        background-size: 1920px;
+        background-position-y: unset;
+    }
+}
+
+.input-validation-error {
+    border-color: #E74C3C;
+}
+
+footer p {
+    margin-bottom: 0 !important;
+}
+
+ul.schedule-list li i {
+    font-size: 12px;
+    color: #b1b1b1;
+}
+
+/*table.schedule-list tr td {
+    padding: 1px 25px;
+}*/
+
+div.schedule-container {
+    margin-top: -30px;
+    margin-bottom: 30px;
+}
+
+.no-max-width {
+    max-width:unset !important;
+}
+
+.page-link:hover {
+    background-color: #313131;
+}
+
+.page-link {
+    background-color: #444;
+    /*cursor:pointer;*/
+}
+
+    .page-link.active {
+        background-color: #375a7f;
+        /*cursor:pointer;*/
+    }
+
+.post-content img {
+    max-width: 100%;
+}

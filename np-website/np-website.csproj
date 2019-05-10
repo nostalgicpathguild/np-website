@@ -1,0 +1,1428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0D7D3F5B-DB89-46F6-A6A9-E4B97415EC4A}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>np_website</RootNamespace>
+    <AssemblyName>np-website</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Database\Event.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Forum.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumAchievement.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumAdministrator.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumComplaint.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumConfig.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumGroup.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumGroupPermission.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumMessage.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumMessageRating.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumModerator.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumNewForumMsgSubscription.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumNewTopicSubscription.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumPersonalMessage.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumPoll.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumPollAnswer.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumPollOption.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumSubforum.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumSubscription.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumTopic.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumUploadedFile.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumUploadedPersonalFile.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumUser.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumUserGroup.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ForumUsersInGroup.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\NPGuild.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NPGuild.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\NPGuild.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\NPGuild.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NPGuild.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Post.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\RaidAttendance.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\User.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\UserLevel.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DeletePostViewModel.cs" />
+    <Compile Include="Models\EditPostModel.cs" />
+    <Compile Include="Models\GoogleReCaptchaValidator.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\MemberLoginModel.cs" />
+    <Compile Include="Models\NewMemberModel.cs" />
+    <Compile Include="Models\NewPostModel.cs" />
+    <Compile Include="Models\PostImageModel.cs" />
+    <Compile Include="Models\PostListModel.cs" />
+    <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\EventItemModel.cs" />
+    <Compile Include="Models\EventViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AppSettings.cs" />
+    <Compile Include="Resources\MySession.cs" />
+    <Compile Include="SiteAuthorize.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\aspneforum_MSsql.sql" />
+    <Content Include="App_Data\aspneforum_mysql.sql" />
+    <Content Include="App_Data\FORUM.mdb" />
+    <Content Include="App_Data\FORUM.mdf" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.darkly.min.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\forum.css" />
+    <Content Include="Content\Images\NP-Forum-Banner.png" />
+    <Content Include="Content\Nostalgic Path Banner.png" />
+    <Content Include="Database\NPGuild.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NPGuild.Context.cs</LastGenOutput>
+      <DependentUpon>NPGuild.edmx</DependentUpon>
+    </Content>
+    <Content Include="Database\NPGuild.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NPGuild.edmx</DependentUpon>
+      <LastGenOutput>NPGuild.cs</LastGenOutput>
+    </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="forum\!!!README-asp-net-forum-software-guide.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\!!folders.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\!!license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\activate.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\addpost.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\addpostajax.ashx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\addprivatemsg.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\adduser.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\admin.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\adminonlineusers.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\adminsettings.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\adminusergroups.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\ajaxuserautocomplete.ashx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\ajaxutils.ashx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\allusers.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\App_LocalResources\ar-SA\adminsettings.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\adminusergroups.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\editforum.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\editprofile.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\editsubforums.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\editusergroup.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\emailallusers.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\lostpassword.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\messages.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\mysubscriptions.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\register.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\search.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\users.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\viewpostsbyuser.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\ar-SA\viewprofile.aspx.ar-SA.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\adminsettings.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\adminusergroups.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\editforum.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\editprofile.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\editsubforums.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\editusergroup.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\emailallusers.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\lostpassword.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\messages.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\mysubscriptions.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\register.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\search.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\users.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\viewpostsbyuser.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\cs-CZ\viewprofile.aspx.cs-CZ.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\adminsettings.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\adminusergroups.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\editforum.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\editprofile.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\editsubforums.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\editusergroup.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\emailallusers.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\lostpassword.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\messages.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\mysubscriptions.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\register.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\search.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\users.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\viewpostsbyuser.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\da-DK\viewprofile.aspx.da-DK.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\adminsettings.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\adminusergroups.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\editforum.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\editprofile.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\editsubforums.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\editusergroup.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\emailallusers.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\lostpassword.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\messages.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\mysubscriptions.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\register.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\search.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\users.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\viewpostsbyuser.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\de-DE\viewprofile.aspx.de-DE.resx" />
+    <Content Include="forum\App_LocalResources\en-US\adminsettings.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\adminusergroups.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\editforum.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\editprofile.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\editsubforums.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\editusergroup.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\emailallusers.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\lostpassword.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\messages.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\mysubscriptions.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\register.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\search.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\users.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\viewpostsbyuser.aspx.resx" />
+    <Content Include="forum\App_LocalResources\en-US\viewprofile.aspx.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\adminsettings.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\adminusergroups.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\editforum.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\editprofile.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\editsubforums.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\editusergroup.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\emailallusers.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\lostpassword.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\messages.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\mysubscriptions.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\register.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\search.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\users.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\viewpostsbyuser.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\es-ES\viewprofile.aspx.es-ES.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\adminsettings.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\adminusergroups.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\editforum.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\editprofile.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\editsubforums.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\editusergroup.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\emailallusers.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\lostpassword.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\messages.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\mysubscriptions.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\register.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\search.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\users.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\viewpostsbyuser.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\fr-FR\viewprofile.aspx.fr-FR.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\adminsettings.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\adminusergroups.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\editforum.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\editprofile.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\editsubforums.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\editusergroup.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\emailallusers.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\lostpassword.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\messages.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\mysubscriptions.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\register.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\search.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\users.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\viewpostsbyuser.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\he-IL\viewprofile.aspx.he-IL.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\adminsettings.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\adminusergroups.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\editforum.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\editprofile.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\editsubforums.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\editusergroup.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\emailallusers.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\lostpassword.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\messages.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\mysubscriptions.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\register.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\search.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\users.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\viewpostsbyuser.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\hi-IN\viewprofile.aspx.hi-IN.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\adminsettings.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\adminusergroups.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\editforum.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\editprofile.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\editsubforums.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\editusergroup.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\emailallusers.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\lostpassword.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\messages.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\mysubscriptions.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\register.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\search.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\users.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\viewpostsbyuser.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\it-IT\viewprofile.aspx.it-IT.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\adminsettings.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\adminusergroups.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\editforum.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\editprofile.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\editsubforums.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\editusergroup.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\emailallusers.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\lostpassword.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\messages.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\mysubscriptions.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\register.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\search.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\users.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\viewpostsbyuser.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nb-NO\viewprofile.aspx.nb-NO.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\adminsettings.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\adminusergroups.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\editforum.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\editprofile.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\editsubforums.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\editusergroup.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\emailallusers.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\lostpassword.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\messages.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\mysubscriptions.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\register.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\search.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\users.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\viewpostsbyuser.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\nl-NL\viewprofile.aspx.nl-NL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\adminsettings.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\adminusergroups.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\editforum.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\editprofile.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\editsubforums.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\editusergroup.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\emailallusers.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\lostpassword.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\messages.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\mysubscriptions.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\register.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\search.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\users.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\viewpostsbyuser.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pl-PL\viewprofile.aspx.pl-PL.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\adminsettings.aspx.pt-PT.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\adminusergroups.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\editforum.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\editprofile.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\editsubforums.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\editusergroup.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\emailallusers.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\lostpassword.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\messages.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\mysubscriptions.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\register.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\search.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\users.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\viewpostsbyuser.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\pt-PT\viewprofile.aspx.pt-pt.resx" />
+    <Content Include="forum\App_LocalResources\readme.txt" />
+    <Content Include="forum\App_LocalResources\ru-RU\adminsettings.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\adminusergroups.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\editforum.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\editprofile.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\editsubforums.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\editusergroup.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\emailallusers.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\lostpassword.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\messages.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\mysubscriptions.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\register.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\search.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\users.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\viewpostsbyuser.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\ru-RU\viewprofile.aspx.ru-RU.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\adminsettings.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\adminusergroups.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\editforum.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\editprofile.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\editsubforums.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\editusergroup.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\emailallusers.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\lostpassword.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\messages.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\mysubscriptions.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\register.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\search.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\users.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\viewpostsbyuser.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\sv-SE\viewprofile.aspx.sv-SE.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\adminsettings.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\adminusergroups.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\editforum.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\editprofile.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\editsubforums.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\editusergroup.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\emailallusers.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\lostpassword.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\messages.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\mysubscriptions.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\register.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\search.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\users.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\viewpostsbyuser.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\tr-TR\viewprofile.aspx.tr-TR.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\adminsettings.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\adminusergroups.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\editforum.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\editprofile.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\editsubforums.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\editusergroup.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\emailallusers.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\lostpassword.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\messages.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\mysubscriptions.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\register.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\search.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\users.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\viewpostsbyuser.aspx.zh-CN.resx" />
+    <Content Include="forum\App_LocalResources\zh-CN\viewprofile.aspx.zh-CN.resx" />
+    <Content Include="forum\aspnetforum.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\AspNetForumMaster.Master">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\autologin.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\captchaimage.ashx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\complaints.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\dbupgrade.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\default.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\editforum.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\editor.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\editor.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\editprofile.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\editsubforums.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\editusergroup.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\emailallusers.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\facebooklogin.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\faq.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\forumgroups.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\ForumPage.cs.orig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\getattachment.ashx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\getavatar.ashx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\getforumicon.ashx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\images\admin.gif" />
+    <Content Include="forum\images\approve.png" />
+    <Content Include="forum\images\AspNetForumAvatar1.gif" />
+    <Content Include="forum\images\AspNetForumAvatar10.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar11.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar12.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar13.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar14.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar15.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar2.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar3.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar4.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar5.gif" />
+    <Content Include="forum\images\AspNetForumAvatar6.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar7.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar8.jpg" />
+    <Content Include="forum\images\AspNetForumAvatar9.jpg" />
+    <Content Include="forum\images\btngradient.gif" />
+    <Content Include="forum\images\btngradient_rev.gif" />
+    <Content Include="forum\images\colors.gif" />
+    <Content Include="forum\images\darkgradient.gif" />
+    <Content Include="forum\images\darkgradient_rev.gif" />
+    <Content Include="forum\images\delete-topic.png" />
+    <Content Include="forum\images\delete.png" />
+    <Content Include="forum\images\delete_bw.png" />
+    <Content Include="forum\images\down.png" />
+    <Content Include="forum\images\edit.gif" />
+    <Content Include="forum\images\editbar_bg.gif" />
+    <Content Include="forum\images\envelope.gif" />
+    <Content Include="forum\images\error.png" />
+    <Content Include="forum\images\facebook.png" />
+    <Content Include="forum\images\fileicon_excel.png" />
+    <Content Include="forum\images\fileicon_na.png" />
+    <Content Include="forum\images\fileicon_pdf.png" />
+    <Content Include="forum\images\fileicon_word.png" />
+    <Content Include="forum\images\forum.gif" />
+    <Content Include="forum\images\forum.png" />
+    <Content Include="forum\images\guestavatar.gif" />
+    <Content Include="forum\images\icon_html.gif" />
+    <Content Include="forum\images\icon_list.gif" />
+    <Content Include="forum\images\icon_quote.png" />
+    <Content Include="forum\images\icon_youtube.gif" />
+    <Content Include="forum\images\img.gif" />
+    <Content Include="forum\images\lock.gif" />
+    <Content Include="forum\images\lock.png" />
+    <Content Include="forum\images\logo.png" />
+    <Content Include="forum\images\logout.gif" />
+    <Content Include="forum\images\ok.png" />
+    <Content Include="forum\images\openid-icon.png" />
+    <Content Include="forum\images\openid\aolW.png" />
+    <Content Include="forum\images\openid\blogger.png" />
+    <Content Include="forum\images\openid\claimid.png" />
+    <Content Include="forum\images\openid\facebookW.png" />
+    <Content Include="forum\images\openid\fadegrey.png" />
+    <Content Include="forum\images\openid\flickr.png" />
+    <Content Include="forum\images\openid\flickrW.png" />
+    <Content Include="forum\images\openid\googleW.png" />
+    <Content Include="forum\images\openid\livejournal.png" />
+    <Content Include="forum\images\openid\myopenid.png" />
+    <Content Include="forum\images\openid\myopenidW.png" />
+    <Content Include="forum\images\openid\myspaceW.png" />
+    <Content Include="forum\images\openid\openid-icon.png" />
+    <Content Include="forum\images\openid\openidico.png" />
+    <Content Include="forum\images\openid\openidW.png" />
+    <Content Include="forum\images\openid\technorati.png" />
+    <Content Include="forum\images\openid\verisign.png" />
+    <Content Include="forum\images\openid\vidoop.png" />
+    <Content Include="forum\images\openid\wordpress.png" />
+    <Content Include="forum\images\openid\yahooW.png" />
+    <Content Include="forum\images\rss.png" />
+    <Content Include="forum\images\smilies\13501381245.gif" />
+    <Content Include="forum\images\smilies\13523300456.gif" />
+    <Content Include="forum\images\smilies\1cool.gif" />
+    <Content Include="forum\images\smilies\27418101277.gif" />
+    <Content Include="forum\images\smilies\28208052075.gif" />
+    <Content Include="forum\images\smilies\28510172849.gif" />
+    <Content Include="forum\images\smilies\28517070443.gif" />
+    <Content Include="forum\images\smilies\30416221069.gif" />
+    <Content Include="forum\images\smilies\30700402927.gif" />
+    <Content Include="forum\images\smilies\32308364851.gif" />
+    <Content Include="forum\images\smilies\404.gif" />
+    <Content Include="forum\images\smilies\4913420063.gif" />
+    <Content Include="forum\images\smilies\4915593391.gif" />
+    <Content Include="forum\images\smilies\5122424636.gif" />
+    <Content Include="forum\images\smilies\5420285018.gif" />
+    <Content Include="forum\images\smilies\5422184119.gif" />
+    <Content Include="forum\images\smilies\5700272664.gif" />
+    <Content Include="forum\images\smilies\5700274341.gif" />
+    <Content Include="forum\images\smilies\5700293539.gif" />
+    <Content Include="forum\images\smilies\5700365222.gif" />
+    <Content Include="forum\images\smilies\582145129.gif" />
+    <Content Include="forum\images\smilies\5821461258.gif" />
+    <Content Include="forum\images\smilies\5821472746.gif" />
+    <Content Include="forum\images\smilies\5821542753.gif" />
+    <Content Include="forum\images\smilies\5822044956.gif" />
+    <Content Include="forum\images\smilies\5822051440.gif" />
+    <Content Include="forum\images\smilies\5822214714.gif" />
+    <Content Include="forum\images\smilies\5822282438.gif" />
+    <Content Include="forum\images\smilies\5822291454.gif" />
+    <Content Include="forum\images\smilies\5822332967.gif" />
+    <Content Include="forum\images\smilies\5822392499.gif" />
+    <Content Include="forum\images\smilies\5903011026.gif" />
+    <Content Include="forum\images\smilies\6804382843.gif" />
+    <Content Include="forum\images\smilies\7309300734.gif" />
+    <Content Include="forum\images\smilies\7314474053.gif" />
+    <Content Include="forum\images\smilies\908572171.gif" />
+    <Content Include="forum\images\smilies\angel2.gif" />
+    <Content Include="forum\images\smilies\argue.gif" />
+    <Content Include="forum\images\smilies\badrazz.gif" />
+    <Content Include="forum\images\smilies\banghead.gif" />
+    <Content Include="forum\images\smilies\banhim.gif" />
+    <Content Include="forum\images\smilies\banned.gif" />
+    <Content Include="forum\images\smilies\beer.gif" />
+    <Content Include="forum\images\smilies\bgmad.gif" />
+    <Content Include="forum\images\smilies\biggrin.gif" />
+    <Content Include="forum\images\smilies\birthday.gif" />
+    <Content Include="forum\images\smilies\boink.gif" />
+    <Content Include="forum\images\smilies\bongL3i8.gif" />
+    <Content Include="forum\images\smilies\bowdown.gif" />
+    <Content Include="forum\images\smilies\bowrofl.gif" />
+    <Content Include="forum\images\smilies\boxer.gif" />
+    <Content Include="forum\images\smilies\bump.gif" />
+    <Content Include="forum\images\smilies\coffee26at.gif" />
+    <Content Include="forum\images\smilies\confused.gif" />
+    <Content Include="forum\images\smilies\confused7nt.gif" />
+    <Content Include="forum\images\smilies\crazy3.gif" />
+    <Content Include="forum\images\smilies\damnpc.gif" />
+    <Content Include="forum\images\smilies\dance.gif" />
+    <Content Include="forum\images\smilies\dawave.gif" />
+    <Content Include="forum\images\smilies\dbl.gif" />
+    <Content Include="forum\images\smilies\dri0047.gif" />
+    <Content Include="forum\images\smilies\dunno.gif" />
+    <Content Include="forum\images\smilies\edited.gif" />
+    <Content Include="forum\images\smilies\educate.gif" />
+    <Content Include="forum\images\smilies\eek.gif" />
+    <Content Include="forum\images\smilies\eek7.gif" />
+    <Content Include="forum\images\smilies\faqnice.gif" />
+    <Content Include="forum\images\smilies\feedback.gif" />
+    <Content Include="forum\images\smilies\fingersx.gif" />
+    <Content Include="forum\images\smilies\flasher.gif" />
+    <Content Include="forum\images\smilies\flogging.gif" />
+    <Content Include="forum\images\smilies\fork_off.gif" />
+    <Content Include="forum\images\smilies\frown.gif" />
+    <Content Include="forum\images\smilies\fruit.gif" />
+    <Content Include="forum\images\smilies\goodpost7td.gif" />
+    <Content Include="forum\images\smilies\google.gif" />
+    <Content Include="forum\images\smilies\gotcha.gif" />
+    <Content Include="forum\images\smilies\grngreedy.gif" />
+    <Content Include="forum\images\smilies\grouphug.gif" />
+    <Content Include="forum\images\smilies\hahaha.gif" />
+    <Content Include="forum\images\smilies\hahano.gif" />
+    <Content Include="forum\images\smilies\headscratch.gif" />
+    <Content Include="forum\images\smilies\heh_heh.gif" />
+    <Content Include="forum\images\smilies\hitit.gif" />
+    <Content Include="forum\images\smilies\hsnono.gif" />
+    <Content Include="forum\images\smilies\hug.gif" />
+    <Content Include="forum\images\smilies\iagree.gif" />
+    <Content Include="forum\images\smilies\icon_darin.gif" />
+    <Content Include="forum\images\smilies\ignore.gif" />
+    <Content Include="forum\images\smilies\ill.gif" />
+    <Content Include="forum\images\smilies\jammin.gif" />
+    <Content Include="forum\images\smilies\kekekegay.gif" />
+    <Content Include="forum\images\smilies\king.gif" />
+    <Content Include="forum\images\smilies\kissyou.gif" />
+    <Content Include="forum\images\smilies\knee7rm.gif" />
+    <Content Include="forum\images\smilies\lamer2845nh.gif" />
+    <Content Include="forum\images\smilies\laugh.gif" />
+    <Content Include="forum\images\smilies\lockd.gif" />
+    <Content Include="forum\images\smilies\loo.gif" />
+    <Content Include="forum\images\smilies\menacegrin.gif" />
+    <Content Include="forum\images\smilies\metallicblue.gif" />
+    <Content Include="forum\images\smilies\milk.gif" />
+    <Content Include="forum\images\smilies\music-smiley-026.gif" />
+    <Content Include="forum\images\smilies\naughty.gif" />
+    <Content Include="forum\images\smilies\navbits_finallink.gif" />
+    <Content Include="forum\images\smilies\navbits_start.gif" />
+    <Content Include="forum\images\smilies\newbluesweatdrop.gif" />
+    <Content Include="forum\images\smilies\nosmile.gif" />
+    <Content Include="forum\images\smilies\nutkick5ur.gif" />
+    <Content Include="forum\images\smilies\offtopic.gif" />
+    <Content Include="forum\images\smilies\omg9hi.gif" />
+    <Content Include="forum\images\smilies\ontopic.gif" />
+    <Content Include="forum\images\smilies\overlord.gif" />
+    <Content Include="forum\images\smilies\owned.gif" />
+    <Content Include="forum\images\smilies\party.gif" />
+    <Content Include="forum\images\smilies\pat9xu.gif" />
+    <Content Include="forum\images\smilies\Peace!.gif" />
+    <Content Include="forum\images\smilies\pimp.gif" />
+    <Content Include="forum\images\smilies\pir8.gif" />
+    <Content Include="forum\images\smilies\po.gif" />
+    <Content Include="forum\images\smilies\police.gif" />
+    <Content Include="forum\images\smilies\qfe.gif" />
+    <Content Include="forum\images\smilies\rant2.gif" />
+    <Content Include="forum\images\smilies\repost.gif" />
+    <Content Include="forum\images\smilies\rolleyes.gif" />
+    <Content Include="forum\images\smilies\rtfm.gif" />
+    <Content Include="forum\images\smilies\rulez.gif" />
+    <Content Include="forum\images\smilies\sd3.gif" />
+    <Content Include="forum\images\smilies\sdb60030.gif" />
+    <Content Include="forum\images\smilies\shakehead.gif" />
+    <Content Include="forum\images\smilies\SHOCKED.gif" />
+    <Content Include="forum\images\smilies\silly.gif" />
+    <Content Include="forum\images\smilies\smash.gif" />
+    <Content Include="forum\images\smilies\smile.gif" />
+    <Content Include="forum\images\smilies\spam4ot.gif" />
+    <Content Include="forum\images\smilies\spliff.gif" />
+    <Content Include="forum\images\smilies\spock.gif" />
+    <Content Include="forum\images\smilies\spyme.gif" />
+    <Content Include="forum\images\smilies\squint.gif" />
+    <Content Include="forum\images\smilies\ssst.gif" />
+    <Content Include="forum\images\smilies\sterb0298yz.gif" />
+    <Content Include="forum\images\smilies\sterb0734ps.gif" />
+    <Content Include="forum\images\smilies\sterb1842sg.gif" />
+    <Content Include="forum\images\smilies\sterb1881bq.gif" />
+    <Content Include="forum\images\smilies\sterb1908nd.gif" />
+    <Content Include="forum\images\smilies\sterb1918mv.gif" />
+    <Content Include="forum\images\smilies\sterb2457li.gif" />
+    <Content Include="forum\images\smilies\stickpoke.gif" />
+    <Content Include="forum\images\smilies\stupid.gif" />
+    <Content Include="forum\images\smilies\suicide.gif" />
+    <Content Include="forum\images\smilies\thefinger.gif" />
+    <Content Include="forum\images\smilies\threadjacked.gif" />
+    <Content Include="forum\images\smilies\thumb.gif" />
+    <Content Include="forum\images\smilies\thumbdowncopy1up.gif" />
+    <Content Include="forum\images\smilies\tinfoil.gif" />
+    <Content Include="forum\images\smilies\tongue.gif" />
+    <Content Include="forum\images\smilies\twitch2.gif" />
+    <Content Include="forum\images\smilies\UNCLESAM.gif" />
+    <Content Include="forum\images\smilies\upset.gif" />
+    <Content Include="forum\images\smilies\urstupid.gif" />
+    <Content Include="forum\images\smilies\usa.gif" />
+    <Content Include="forum\images\smilies\wavey.gif" />
+    <Content Include="forum\images\smilies\werd.gif" />
+    <Content Include="forum\images\smilies\whs0be.gif" />
+    <Content Include="forum\images\smilies\wiggle.gif" />
+    <Content Include="forum\images\smilies\wiki.gif" />
+    <Content Include="forum\images\smilies\wink.gif" />
+    <Content Include="forum\images\smilies\wink_2.gif" />
+    <Content Include="forum\images\smilies\woohoo.gif" />
+    <Content Include="forum\images\smilies\worshippy.gif" />
+    <Content Include="forum\images\smilies\wtcslap.gif" />
+    <Content Include="forum\images\smilies\wtf.gif" />
+    <Content Include="forum\images\smilies\xxx.gif" />
+    <Content Include="forum\images\smilies\ylsuper.gif" />
+    <Content Include="forum\images\smilies\_sure.gif" />
+    <Content Include="forum\images\stick.png" />
+    <Content Include="forum\images\thumbsdown.png" />
+    <Content Include="forum\images\thumbsup.png" />
+    <Content Include="forum\images\topic.gif" />
+    <Content Include="forum\images\topic_locked.png" />
+    <Content Include="forum\images\topic_sticky.png" />
+    <Content Include="forum\images\topic_unread.png" />
+    <Content Include="forum\images\twitter.png" />
+    <Content Include="forum\images\unreadmessages.png" />
+    <Content Include="forum\images\unreadtopics.png" />
+    <Content Include="forum\images\up.png" />
+    <Content Include="forum\images\url.gif" />
+    <Content Include="forum\images\vote_bg.gif" />
+    <Content Include="forum\imgthumbnail.ashx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\jquery.autocomplete.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\jquery.autocomplete.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\jquery.jgrowl.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\jquery.jgrowl_minimized.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\jquery.MultiFile.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\jquery.openid.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\jquery.placeholder.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\logout.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\lostpassword.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\messages.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\messagesajax.ashx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\mysubscriptions.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\notactivated.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\openid.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\OpenIdLogin.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\premoderatedmessage.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\privateinbox.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\purgeoldtopics.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\recent.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\recentposts.ascx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\recentposts.ascx.orig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\recenttopics.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\register.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\renewsession.ashx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\search.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\smilies.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\topics.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\twitterlogin.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\unapprovedposts.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\updatedtopics.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\users.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\viewpostsbyuser.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\viewprofile.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\Web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum\Web.config.orig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker.css" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker.min.css" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker.standalone.css" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker3.css" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker3.min.css" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Scripts\datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="Scripts\datepicker\js\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.ar.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.az.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.bg.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.bs.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.ca.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.cs.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.cy.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.da.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.de.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.el.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.en-AU.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.en-GB.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.eo.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.es.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.et.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.eu.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.fa.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.fi.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.fo.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.fr-CH.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.fr.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.gl.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.he.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.hr.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.hu.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.hy.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.id.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.is.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.it-CH.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.it.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.ja.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.ka.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.kh.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.kk.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.ko.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.kr.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.lt.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.lv.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.me.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.mk.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.mn.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.ms.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.nb.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.nl-BE.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.nl.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.no.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.pl.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.pt-BR.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.pt.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.ro.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.rs-latin.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.rs.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.ru.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.sk.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.sl.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.sq.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.sr-latin.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.sr.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.sv.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.sw.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.th.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.tr.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.uk.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.vi.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.zh-CN.min.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.zh-TW.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Database\NPGuild.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NPGuild.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Database\NPGuild.edmx.diagram">
+      <DependentUpon>NPGuild.edmx</DependentUpon>
+    </Content>
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker.css.map" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker.min.css.map" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker.standalone.css.map" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker.standalone.min.css.map" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker3.css.map" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker3.min.css.map" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker3.standalone.css.map" />
+    <Content Include="Scripts\datepicker\css\bootstrap-datepicker3.standalone.min.css.map" />
+    <Content Include="App_Data\FORUM.mdf.orig" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-timezone-with-data-10-year-range.min.js" />
+    <Content Include="Scripts\moment-timezone-with-data-1970-2030.min.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\tempusdominus-bootstrap-4.min.css" />
+    <Content Include="Scripts\tempusdominus-bootstrap-4.min.js" />
+    <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Scripts\tinymce\license.txt" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\codesample\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\js\emojis.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\js\emojis.min.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\help\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\help\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\imagetools\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\quickbars\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\quickbars\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\responsivefilemanager\img\insertfile.gif" />
+    <Content Include="Scripts\tinymce\plugins\responsivefilemanager\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\toc\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\toc\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Scripts\tinymce\skins\content\default\content.css" />
+    <Content Include="Scripts\tinymce\skins\content\default\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\content\document\content.css" />
+    <Content Include="Scripts\tinymce\skins\content\document\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\content\writer\content.css" />
+    <Content Include="Scripts\tinymce\skins\content\writer\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide-dark\content.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide-dark\content.inline.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide-dark\content.inline.min.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide-dark\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide-dark\skin.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide-dark\skin.min.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide\content.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide\content.inline.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide\content.inline.min.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide\content.mobile.min.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide\skin.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide\skin.min.css" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide\skin.mobile.min.css" />
+    <Content Include="Scripts\tinymce\themes\mobile\theme.js" />
+    <Content Include="Scripts\tinymce\themes\mobile\theme.min.js" />
+    <Content Include="Scripts\tinymce\themes\silver\theme.js" />
+    <Content Include="Scripts\tinymce\themes\silver\theme.min.js" />
+    <Content Include="Scripts\tinymce\tinymce.js" />
+    <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\tinymce\skins\ui\oxide\fonts\tinymce-mobile.woff" />
+    <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Member\Create.cshtml" />
+    <Content Include="Views\Member\AccountCreated.cshtml" />
+    <Content Include="Views\Member\Login.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Post\New.cshtml" />
+    <Content Include="Views\Post\Delete.cshtml" />
+    <Content Include="Views\Post\Edit.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\forumavatars\" />
+    <Folder Include="App_Data\forumicons\" />
+    <Folder Include="App_Data\forumuploadfiles\" />
+    <Folder Include="forum\Jitbit.Utils\" />
+    <Folder Include="Uploads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="forum\Resources\various.ar-SA.resx" />
+    <EmbeddedResource Include="forum\Resources\various.cs-CZ.resx" />
+    <EmbeddedResource Include="forum\Resources\various.da-DK.resx" />
+    <EmbeddedResource Include="forum\Resources\various.de-DE.resx" />
+    <EmbeddedResource Include="forum\Resources\various.es-ES.resx" />
+    <EmbeddedResource Include="forum\Resources\various.fr-FR.resx" />
+    <EmbeddedResource Include="forum\Resources\various.he-IL.resx" />
+    <EmbeddedResource Include="forum\Resources\various.hi-IN.resx" />
+    <EmbeddedResource Include="forum\Resources\various.it-IT.resx" />
+    <EmbeddedResource Include="forum\Resources\various.nb-NO.resx" />
+    <EmbeddedResource Include="forum\Resources\various.nl-NL.resx" />
+    <EmbeddedResource Include="forum\Resources\various.pl-PL.resx" />
+    <EmbeddedResource Include="forum\Resources\various.pt-pt.resx" />
+    <EmbeddedResource Include="forum\Resources\various.resx" />
+    <EmbeddedResource Include="forum\Resources\various.ru-RU.resx" />
+    <EmbeddedResource Include="forum\Resources\various.sv-SE.resx" />
+    <EmbeddedResource Include="forum\Resources\various.tr-TR.resx" />
+    <EmbeddedResource Include="forum\Resources\various.zh-cn.resx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64429</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64429/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

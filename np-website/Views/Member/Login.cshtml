@@ -1,0 +1,41 @@
+﻿@model np_website.Models.MemberLoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+@*<h2>Member Login</h2>*@
+
+
+<div class="card border-primary mb-3 " style="max-width: 26rem; margin: 0 auto;">
+    <div class="card-header">Member Login</div>
+    <div class="card-body">
+
+        @if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Any()))
+        {
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Please enter all required fields</strong>
+                @Html.ValidationSummary(false, "Errors: ")
+            </div>
+        }
+
+        @*<h4 class="card-title">Primary card title</h4>*@
+        @*<p class="card-text">Enter your email and password to login.</p>*@
+        @using (Html.BeginForm("Login", "Member", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @type = "email", @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password)
+                @Html.TextBoxFor(m => m.Password, new { @type = "password", @class = "form-control" })
+            </div>
+
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            <div class="g-recaptcha" data-sitekey="@np_website.Resources.AppSettings.GoogleReCaptchaSiteKey"></div>
+
+            <button class="btn btn-success" type="submit">Login</button>
+        }
+    </div>
+</div>

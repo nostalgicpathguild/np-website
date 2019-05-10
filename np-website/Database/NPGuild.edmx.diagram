@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5d5d488a84e540e8b955d73d76aceda7" Name="Diagram1">
+        <EntityTypeShape EntityType="NPGuildModel.RaidAttendance" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPGuildModel.UserLevel" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPGuildModel.User" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="NPGuildModel.FK_Users_UserLevel" />
+        <EntityTypeShape EntityType="NPGuildModel.Post" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="NPGuildModel.FK_Posts_Author" />
+        <EntityTypeShape EntityType="NPGuildModel.Event" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumAchievement" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumAdministrator" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumConfig" Width="1.5" PointX="7.75" PointY="2.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumGroupPermission" Width="1.5" PointX="3.75" PointY="7.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumGroup" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumMessageRating" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumMessage" Width="1.5" PointX="5.75" PointY="8.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumModerator" Width="1.5" PointX="7.75" PointY="8.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumNewForumMsgSubscription" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumNewTopicSubscription" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumPersonalMessage" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumPollAnswer" Width="1.5" PointX="2.75" PointY="10.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumPollOption" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumPoll" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NPGuildModel.Forum" Width="1.5" PointX="11.75" PointY="3.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumSubforum" Width="1.5" PointX="11.75" PointY="7.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumSubscription" Width="1.5" PointX="11.75" PointY="10.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumTopic" Width="1.5" PointX="4.75" PointY="12.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumUploadedFile" Width="1.5" PointX="6.75" PointY="12.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumUploadedPersonalFile" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumUserGroup" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumUser" Width="1.5" PointX="13.75" PointY="3.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumUsersInGroup" Width="1.5" PointX="8.75" PointY="13.75" />
+        <EntityTypeShape EntityType="NPGuildModel.ForumComplaint" Width="1.5" PointX="13.75" PointY="9.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

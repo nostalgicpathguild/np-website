@@ -1,0 +1,44 @@
+﻿@model np_website.Models.PostListModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts {
+<script type="text/javascript">
+
+
+
+</script>
+}
+
+<h2>Posts</h2>
+
+<a href="/post/new" class="btn btn-primary">New Post</a>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Date</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model.Posts)
+        {
+            <tr>
+                <th scope="row">
+                    <a class="btn btn-primary" href="/post/edit/@post.PostId">Edit</a>
+                </th>
+                <td>@post.Title</td>
+                <td>@post.Author</td>
+                <td>@post.PostDate</td>
+                <td>
+                    <a class="btn btn-outline-danger" href="/post/delete/@post.PostId">Remove</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

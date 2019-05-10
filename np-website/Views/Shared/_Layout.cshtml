@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostalgic Path</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300|Quicksand|Roboto|Roboto+Condensed" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/forum">Forum</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://docs.google.com/spreadsheets/d/1I66SuC4grC0NOi-uu_INqy99juIiSXIFvAsPFzvgq4s" target="_blank">DKP</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://discord.gg/xevAAxB" target="_blank">Discord</a>
+                </li>
+                <li class="nav-item">
+                    @*<a class="nav-link" href="https://forms.gle/reSkxD6cySmM8XsD8" target="_blank">Apply</a>*@
+                    <a class="nav-link" href="https://www.youtube.com/watch?v=oHg5SJYRHA0" target="_blank">Apply</a>
+                </li>
+                @if (np_website.Resources.MySession.UserLevel == 6 || np_website.Resources.MySession.UserLevel == 7)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/post/index">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/event/index">Edit Events</a>
+                    </li>
+                }
+            </ul>
+            @if (np_website.Resources.MySession.UserLevel == 0)
+            {
+                <a class="nav-link" href="/member/login">Login</a>
+                <a class="nav-link" href="/member/create">Create Account</a>
+            }
+            else
+            {
+                <a class="nav-link" href="/member/logout">Logout</a>
+            }
+        </div>
+
+    </nav>
+
+    @RenderSection("banner", required: false)
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Nostalgic Path</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

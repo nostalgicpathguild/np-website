@@ -1,0 +1,1092 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NPGuildModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Start" Type="datetime" Nullable="false" />
+          <Property Name="End" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Leader" Type="nvarchar(max)" />
+          <Property Name="Removed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumAchievements">
+          <Key>
+            <PropertyRef Name="AchievementID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="AchievementID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="TimesAchieved" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumAdministrators">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NPGuild.dbo.ForumComplaints' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ForumComplaints">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="MessageID" />
+            <PropertyRef Name="ComplainText" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="MessageID" Type="int" Nullable="false" />
+          <Property Name="ComplainText" Type="ntext" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumConfig">
+          <Key>
+            <PropertyRef Name="CfgKey" />
+          </Key>
+          <Property Name="CfgKey" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CfgValue" Type="ntext" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumGroupPermissions">
+          <Key>
+            <PropertyRef Name="ForumID" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="ForumID" Type="int" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="AllowReading" Type="bit" Nullable="false" />
+          <Property Name="AllowPosting" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumGroups">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrderByNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumMessageRating">
+          <Key>
+            <PropertyRef Name="MessageID" />
+            <PropertyRef Name="VoterUserID" />
+          </Key>
+          <Property Name="MessageID" Type="int" Nullable="false" />
+          <Property Name="VoterUserID" Type="int" Nullable="false" />
+          <Property Name="Score" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumMessages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TopicID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Body" Type="ntext" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="Visible" Type="bit" Nullable="false" />
+          <Property Name="IPAddress" Type="varchar" MaxLength="50" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="AcceptedAnswer" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumModerators">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ForumID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ForumID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumNewForumMsgSubscriptions">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ForumID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ForumID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumNewTopicSubscriptions">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ForumID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ForumID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumPersonalMessages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromUserID" Type="int" Nullable="false" />
+          <Property Name="ToUserID" Type="int" Nullable="false" />
+          <Property Name="Body" Type="ntext" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="New" Type="bit" Nullable="false" />
+          <Property Name="HiddenBySender" Type="bit" Nullable="false" />
+          <Property Name="HiddenByRecipient" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumPollAnswers">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="OptionID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="OptionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumPollOptions">
+          <Key>
+            <PropertyRef Name="OptionID" />
+          </Key>
+          <Property Name="OptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PollID" Type="int" Nullable="false" />
+          <Property Name="OptionText" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumPolls">
+          <Key>
+            <PropertyRef Name="PollID" />
+          </Key>
+          <Property Name="PollID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TopicID" Type="int" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Forums">
+          <Key>
+            <PropertyRef Name="ForumID" />
+          </Key>
+          <Property Name="ForumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Premoderated" Type="bit" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="MembersOnly" Type="bit" Nullable="false" />
+          <Property Name="OrderByNumber" Type="int" Nullable="false" />
+          <Property Name="RestrictTopicCreation" Type="bit" Nullable="false" />
+          <Property Name="IconFile" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ForumSettings">
+          <Property Name="LastDigestSentDate" Type="datetime" />
+        </EntityType>-->
+        <EntityType Name="ForumSubforums">
+          <Key>
+            <PropertyRef Name="ParentForumID" />
+            <PropertyRef Name="SubForumID" />
+          </Key>
+          <Property Name="ParentForumID" Type="int" Nullable="false" />
+          <Property Name="SubForumID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumSubscriptions">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="TopicID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumTopics">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ForumID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Visible" Type="bit" Nullable="false" />
+          <Property Name="LastMessageID" Type="int" Nullable="false" />
+          <Property Name="IsSticky" Type="int" Nullable="false" />
+          <Property Name="IsClosed" Type="bit" Nullable="false" />
+          <Property Name="ViewsCount" Type="int" Nullable="false" />
+          <Property Name="RepliesCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumUploadedFiles">
+          <Key>
+            <PropertyRef Name="FileID" />
+          </Key>
+          <Property Name="FileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MessageID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumUploadedPersonalFiles">
+          <Key>
+            <PropertyRef Name="FileID" />
+          </Key>
+          <Property Name="FileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MessageID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumUserGroups">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumUsers">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Homepage" Type="nvarchar" MaxLength="255" />
+          <Property Name="Interests" Type="nvarchar" MaxLength="255" />
+          <Property Name="PostsCount" Type="int" Nullable="false" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="ActivationCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AvatarFileName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Signature" Type="nvarchar" MaxLength="1000" />
+          <Property Name="LastLogonDate" Type="datetime" />
+          <Property Name="ReputationCache" Type="int" Nullable="false" />
+          <Property Name="OpenIdUserName" Type="nvarchar" MaxLength="255" />
+          <Property Name="HidePresence" Type="bit" Nullable="false" />
+          <Property Name="UseGravatar" Type="bit" Nullable="false" />
+          <Property Name="TwitterUserName" Type="varchar" MaxLength="255" />
+          <Property Name="FacebookID" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ForumUsersInGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="EditedDateTime" Type="datetime" />
+          <Property Name="Removed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RaidAttendance">
+          <Key>
+            <PropertyRef Name="RaidAttendanceId" />
+          </Key>
+          <Property Name="RaidAttendanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Group" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Class" Type="nvarchar(max)" />
+          <Property Name="Role" Type="nvarchar(max)" />
+          <Property Name="Flagged" Type="bit" Nullable="false" />
+          <Property Name="DumpTime" Type="datetime" Nullable="false" />
+          <Property Name="DKP" Type="int" Nullable="false" />
+          <Property Name="Include" Type="bit" Nullable="false" />
+          <Property Name="Processed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserLevels">
+          <Key>
+            <PropertyRef Name="UserLevelId" />
+          </Key>
+          <Property Name="UserLevelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="varbinary" MaxLength="1024" Nullable="false" />
+          <Property Name="PasswordSalt" Type="varbinary" MaxLength="1024" Nullable="false" />
+          <Property Name="CharacterName" Type="nvarchar(max)" />
+          <Property Name="UserLevelId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Posts_Author">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserLevel">
+          <End Role="UserLevels" Type="Self.UserLevels" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLevels">
+              <PropertyRef Name="UserLevelId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NPGuildModelStoreContainer">
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumAchievements" EntityType="Self.ForumAchievements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumAdministrators" EntityType="Self.ForumAdministrators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumConfig" EntityType="Self.ForumConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumGroupPermissions" EntityType="Self.ForumGroupPermissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumGroups" EntityType="Self.ForumGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumMessageRating" EntityType="Self.ForumMessageRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumMessages" EntityType="Self.ForumMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumModerators" EntityType="Self.ForumModerators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumNewForumMsgSubscriptions" EntityType="Self.ForumNewForumMsgSubscriptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumNewTopicSubscriptions" EntityType="Self.ForumNewTopicSubscriptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumPersonalMessages" EntityType="Self.ForumPersonalMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumPollAnswers" EntityType="Self.ForumPollAnswers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumPollOptions" EntityType="Self.ForumPollOptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumPolls" EntityType="Self.ForumPolls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Forums" EntityType="Self.Forums" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumSubforums" EntityType="Self.ForumSubforums" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumSubscriptions" EntityType="Self.ForumSubscriptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumTopics" EntityType="Self.ForumTopics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumUploadedFiles" EntityType="Self.ForumUploadedFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumUploadedPersonalFiles" EntityType="Self.ForumUploadedPersonalFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumUserGroups" EntityType="Self.ForumUserGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumUsers" EntityType="Self.ForumUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumUsersInGroup" EntityType="Self.ForumUsersInGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RaidAttendance" EntityType="Self.RaidAttendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLevels" EntityType="Self.UserLevels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumComplaints" EntityType="Self.ForumComplaints" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ForumComplaints].[UserID] AS [UserID], 
+    [ForumComplaints].[MessageID] AS [MessageID], 
+    [ForumComplaints].[ComplainText] AS [ComplainText]
+    FROM [dbo].[ForumComplaints] AS [ForumComplaints]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Posts_Author" Association="Self.FK_Posts_Author">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserLevel" Association="Self.FK_Users_UserLevel">
+            <End Role="UserLevels" EntitySet="UserLevels" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NPGuildModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="RaidAttendance">
+          <Key>
+            <PropertyRef Name="RaidAttendanceId" />
+          </Key>
+          <Property Name="RaidAttendanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Group" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Flagged" Type="Boolean" Nullable="false" />
+          <Property Name="DumpTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DKP" Type="Int32" Nullable="false" />
+          <Property Name="Include" Type="Boolean" Nullable="false" />
+          <Property Name="Processed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserLevel">
+          <Key>
+            <PropertyRef Name="UserLevelId" />
+          </Key>
+          <Property Name="UserLevelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="NPGuildModel.FK_Users_UserLevel" FromRole="UserLevel" ToRole="User" />
+        </EntityType>
+        <EntityContainer Name="NPGuildEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RaidAttendances" EntityType="Self.RaidAttendance" />
+          <EntitySet Name="UserLevels" EntityType="Self.UserLevel" />
+          <EntitySet Name="Users" EntityType="NPGuildModel.User" />
+          <AssociationSet Name="FK_Users_UserLevel" Association="NPGuildModel.FK_Users_UserLevel">
+            <End Role="UserLevel" EntitySet="UserLevels" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Posts" EntityType="NPGuildModel.Post" />
+          <AssociationSet Name="FK_Posts_Author" Association="NPGuildModel.FK_Posts_Author">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <EntitySet Name="Events" EntityType="NPGuildModel.Event" />
+          <EntitySet Name="ForumAchievements" EntityType="NPGuildModel.ForumAchievement" />
+          <EntitySet Name="ForumAdministrators" EntityType="NPGuildModel.ForumAdministrator" />
+          <EntitySet Name="ForumConfigs" EntityType="NPGuildModel.ForumConfig" />
+          <EntitySet Name="ForumGroupPermissions" EntityType="NPGuildModel.ForumGroupPermission" />
+          <EntitySet Name="ForumGroups" EntityType="NPGuildModel.ForumGroup" />
+          <EntitySet Name="ForumMessageRatings" EntityType="NPGuildModel.ForumMessageRating" />
+          <EntitySet Name="ForumMessages" EntityType="NPGuildModel.ForumMessage" />
+          <EntitySet Name="ForumModerators" EntityType="NPGuildModel.ForumModerator" />
+          <EntitySet Name="ForumNewForumMsgSubscriptions" EntityType="NPGuildModel.ForumNewForumMsgSubscription" />
+          <EntitySet Name="ForumNewTopicSubscriptions" EntityType="NPGuildModel.ForumNewTopicSubscription" />
+          <EntitySet Name="ForumPersonalMessages" EntityType="NPGuildModel.ForumPersonalMessage" />
+          <EntitySet Name="ForumPollAnswers" EntityType="NPGuildModel.ForumPollAnswer" />
+          <EntitySet Name="ForumPollOptions" EntityType="NPGuildModel.ForumPollOption" />
+          <EntitySet Name="ForumPolls" EntityType="NPGuildModel.ForumPoll" />
+          <EntitySet Name="Forums" EntityType="NPGuildModel.Forum" />
+          <EntitySet Name="ForumSubforums" EntityType="NPGuildModel.ForumSubforum" />
+          <EntitySet Name="ForumSubscriptions" EntityType="NPGuildModel.ForumSubscription" />
+          <EntitySet Name="ForumTopics" EntityType="NPGuildModel.ForumTopic" />
+          <EntitySet Name="ForumUploadedFiles" EntityType="NPGuildModel.ForumUploadedFile" />
+          <EntitySet Name="ForumUploadedPersonalFiles" EntityType="NPGuildModel.ForumUploadedPersonalFile" />
+          <EntitySet Name="ForumUserGroups" EntityType="NPGuildModel.ForumUserGroup" />
+          <EntitySet Name="ForumUsers" EntityType="NPGuildModel.ForumUser" />
+          <EntitySet Name="ForumUsersInGroups" EntityType="NPGuildModel.ForumUsersInGroup" />
+          <EntitySet Name="ForumComplaints" EntityType="NPGuildModel.ForumComplaint" />
+          </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="Binary" Nullable="false" MaxLength="1024" FixedLength="false" />
+          <Property Name="PasswordSalt" Type="Binary" Nullable="false" MaxLength="1024" FixedLength="false" />
+          <Property Name="CharacterName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserLevelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserLevel" Relationship="NPGuildModel.FK_Users_UserLevel" FromRole="User" ToRole="UserLevel" />
+          <NavigationProperty Name="Posts" Relationship="NPGuildModel.FK_Posts_Author" FromRole="User" ToRole="Post" />
+        </EntityType>
+        <Association Name="FK_Users_UserLevel">
+          <End Type="NPGuildModel.UserLevel" Role="UserLevel" Multiplicity="1" />
+          <End Type="NPGuildModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLevel">
+              <PropertyRef Name="UserLevelId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostId" />
+          </Key>
+          <Property Name="PostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EditedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="NPGuildModel.FK_Posts_Author" FromRole="Post" ToRole="User" />
+          <Property Name="Removed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Posts_Author">
+          <End Type="NPGuildModel.User" Role="User" Multiplicity="1" />
+          <End Type="NPGuildModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="End" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Leader" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Removed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumAchievement">
+          <Key>
+            <PropertyRef Name="AchievementID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="AchievementID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimesAchieved" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumAdministrator">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumConfig">
+          <Key>
+            <PropertyRef Name="CfgKey" />
+          </Key>
+          <Property Name="CfgKey" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CfgValue" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ForumGroupPermission">
+          <Key>
+            <PropertyRef Name="ForumID" />
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="ForumID" Type="Int32" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="AllowReading" Type="Boolean" Nullable="false" />
+          <Property Name="AllowPosting" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderByNumber" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumMessageRating">
+          <Key>
+            <PropertyRef Name="MessageID" />
+            <PropertyRef Name="VoterUserID" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" />
+          <Property Name="VoterUserID" Type="Int32" Nullable="false" />
+          <Property Name="Score" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumMessage">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TopicID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Visible" Type="Boolean" Nullable="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="AcceptedAnswer" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumModerator">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ForumID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ForumID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumNewForumMsgSubscription">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ForumID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ForumID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumNewTopicSubscription">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ForumID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ForumID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumPersonalMessage">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromUserID" Type="Int32" Nullable="false" />
+          <Property Name="ToUserID" Type="Int32" Nullable="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="New" Type="Boolean" Nullable="false" />
+          <Property Name="HiddenBySender" Type="Boolean" Nullable="false" />
+          <Property Name="HiddenByRecipient" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumPollAnswer">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="OptionID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="OptionID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumPollOption">
+          <Key>
+            <PropertyRef Name="OptionID" />
+          </Key>
+          <Property Name="OptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PollID" Type="Int32" Nullable="false" />
+          <Property Name="OptionText" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ForumPoll">
+          <Key>
+            <PropertyRef Name="PollID" />
+          </Key>
+          <Property Name="PollID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TopicID" Type="Int32" Nullable="false" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Forum">
+          <Key>
+            <PropertyRef Name="ForumID" />
+          </Key>
+          <Property Name="ForumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Premoderated" Type="Boolean" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="MembersOnly" Type="Boolean" Nullable="false" />
+          <Property Name="OrderByNumber" Type="Int32" Nullable="false" />
+          <Property Name="RestrictTopicCreation" Type="Boolean" Nullable="false" />
+          <Property Name="IconFile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ForumSubforum">
+          <Key>
+            <PropertyRef Name="ParentForumID" />
+            <PropertyRef Name="SubForumID" />
+          </Key>
+          <Property Name="ParentForumID" Type="Int32" Nullable="false" />
+          <Property Name="SubForumID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumSubscription">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="TopicID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumTopic">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ForumID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Visible" Type="Boolean" Nullable="false" />
+          <Property Name="LastMessageID" Type="Int32" Nullable="false" />
+          <Property Name="IsSticky" Type="Int32" Nullable="false" />
+          <Property Name="IsClosed" Type="Boolean" Nullable="false" />
+          <Property Name="ViewsCount" Type="Int32" Nullable="false" />
+          <Property Name="RepliesCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumUploadedFile">
+          <Key>
+            <PropertyRef Name="FileID" />
+          </Key>
+          <Property Name="FileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MessageID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumUploadedPersonalFile">
+          <Key>
+            <PropertyRef Name="FileID" />
+          </Key>
+          <Property Name="FileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MessageID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumUserGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ForumUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Homepage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Interests" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PostsCount" Type="Int32" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <Property Name="ActivationCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AvatarFileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Signature" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="LastLogonDate" Type="DateTime" Precision="3" />
+          <Property Name="ReputationCache" Type="Int32" Nullable="false" />
+          <Property Name="OpenIdUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HidePresence" Type="Boolean" Nullable="false" />
+          <Property Name="UseGravatar" Type="Boolean" Nullable="false" />
+          <Property Name="TwitterUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FacebookID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ForumUsersInGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForumComplaint">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="MessageID" />
+            <PropertyRef Name="ComplainText" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="MessageID" Type="Int32" Nullable="false" />
+          <Property Name="ComplainText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NPGuildModelStoreContainer" CdmEntityContainer="NPGuildEntities">
+          <EntitySetMapping Name="RaidAttendances">
+            <EntityTypeMapping TypeName="NPGuildModel.RaidAttendance">
+              <MappingFragment StoreEntitySet="RaidAttendance">
+                <ScalarProperty Name="RaidAttendanceId" ColumnName="RaidAttendanceId" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Flagged" ColumnName="Flagged" />
+                <ScalarProperty Name="DumpTime" ColumnName="DumpTime" />
+                <ScalarProperty Name="DKP" ColumnName="DKP" />
+                <ScalarProperty Name="Include" ColumnName="Include" />
+                <ScalarProperty Name="Processed" ColumnName="Processed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLevels">
+            <EntityTypeMapping TypeName="NPGuildModel.UserLevel">
+              <MappingFragment StoreEntitySet="UserLevels">
+                <ScalarProperty Name="UserLevelId" ColumnName="UserLevelId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="NPGuildModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserLevelId" ColumnName="UserLevelId" />
+                <ScalarProperty Name="CharacterName" ColumnName="CharacterName" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="NPGuildModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="Removed" ColumnName="Removed" />
+                <ScalarProperty Name="EditedDateTime" ColumnName="EditedDateTime" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="NPGuildModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="Removed" ColumnName="Removed" />
+                <ScalarProperty Name="Leader" ColumnName="Leader" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="End" ColumnName="End" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumAchievements">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumAchievement">
+              <MappingFragment StoreEntitySet="ForumAchievements">
+                <ScalarProperty Name="TimesAchieved" ColumnName="TimesAchieved" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AchievementID" ColumnName="AchievementID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumAdministrators">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumAdministrator">
+              <MappingFragment StoreEntitySet="ForumAdministrators">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumConfigs">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumConfig">
+              <MappingFragment StoreEntitySet="ForumConfig">
+                <ScalarProperty Name="CfgValue" ColumnName="CfgValue" />
+                <ScalarProperty Name="CfgKey" ColumnName="CfgKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumGroupPermissions">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumGroupPermission">
+              <MappingFragment StoreEntitySet="ForumGroupPermissions">
+                <ScalarProperty Name="AllowPosting" ColumnName="AllowPosting" />
+                <ScalarProperty Name="AllowReading" ColumnName="AllowReading" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="ForumID" ColumnName="ForumID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumGroups">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumGroup">
+              <MappingFragment StoreEntitySet="ForumGroups">
+                <ScalarProperty Name="OrderByNumber" ColumnName="OrderByNumber" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumMessageRatings">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumMessageRating">
+              <MappingFragment StoreEntitySet="ForumMessageRating">
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="VoterUserID" ColumnName="VoterUserID" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumMessages">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumMessage">
+              <MappingFragment StoreEntitySet="ForumMessages">
+                <ScalarProperty Name="AcceptedAnswer" ColumnName="AcceptedAnswer" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumModerators">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumModerator">
+              <MappingFragment StoreEntitySet="ForumModerators">
+                <ScalarProperty Name="ForumID" ColumnName="ForumID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumNewForumMsgSubscriptions">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumNewForumMsgSubscription">
+              <MappingFragment StoreEntitySet="ForumNewForumMsgSubscriptions">
+                <ScalarProperty Name="ForumID" ColumnName="ForumID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumNewTopicSubscriptions">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumNewTopicSubscription">
+              <MappingFragment StoreEntitySet="ForumNewTopicSubscriptions">
+                <ScalarProperty Name="ForumID" ColumnName="ForumID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumPersonalMessages">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumPersonalMessage">
+              <MappingFragment StoreEntitySet="ForumPersonalMessages">
+                <ScalarProperty Name="HiddenByRecipient" ColumnName="HiddenByRecipient" />
+                <ScalarProperty Name="HiddenBySender" ColumnName="HiddenBySender" />
+                <ScalarProperty Name="New" ColumnName="New" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="ToUserID" ColumnName="ToUserID" />
+                <ScalarProperty Name="FromUserID" ColumnName="FromUserID" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumPollAnswers">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumPollAnswer">
+              <MappingFragment StoreEntitySet="ForumPollAnswers">
+                <ScalarProperty Name="OptionID" ColumnName="OptionID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumPollOptions">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumPollOption">
+              <MappingFragment StoreEntitySet="ForumPollOptions">
+                <ScalarProperty Name="OptionText" ColumnName="OptionText" />
+                <ScalarProperty Name="PollID" ColumnName="PollID" />
+                <ScalarProperty Name="OptionID" ColumnName="OptionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumPolls">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumPoll">
+              <MappingFragment StoreEntitySet="ForumPolls">
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="PollID" ColumnName="PollID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Forums">
+            <EntityTypeMapping TypeName="NPGuildModel.Forum">
+              <MappingFragment StoreEntitySet="Forums">
+                <ScalarProperty Name="IconFile" ColumnName="IconFile" />
+                <ScalarProperty Name="RestrictTopicCreation" ColumnName="RestrictTopicCreation" />
+                <ScalarProperty Name="OrderByNumber" ColumnName="OrderByNumber" />
+                <ScalarProperty Name="MembersOnly" ColumnName="MembersOnly" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Premoderated" ColumnName="Premoderated" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ForumID" ColumnName="ForumID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumSubforums">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumSubforum">
+              <MappingFragment StoreEntitySet="ForumSubforums">
+                <ScalarProperty Name="SubForumID" ColumnName="SubForumID" />
+                <ScalarProperty Name="ParentForumID" ColumnName="ParentForumID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumSubscriptions">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumSubscription">
+              <MappingFragment StoreEntitySet="ForumSubscriptions">
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumTopics">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumTopic">
+              <MappingFragment StoreEntitySet="ForumTopics">
+                <ScalarProperty Name="RepliesCount" ColumnName="RepliesCount" />
+                <ScalarProperty Name="ViewsCount" ColumnName="ViewsCount" />
+                <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
+                <ScalarProperty Name="IsSticky" ColumnName="IsSticky" />
+                <ScalarProperty Name="LastMessageID" ColumnName="LastMessageID" />
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ForumID" ColumnName="ForumID" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumUploadedFiles">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumUploadedFile">
+              <MappingFragment StoreEntitySet="ForumUploadedFiles">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumUploadedPersonalFiles">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumUploadedPersonalFile">
+              <MappingFragment StoreEntitySet="ForumUploadedPersonalFiles">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumUserGroups">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumUserGroup">
+              <MappingFragment StoreEntitySet="ForumUserGroups">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumUsers">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumUser">
+              <MappingFragment StoreEntitySet="ForumUsers">
+                <ScalarProperty Name="FacebookID" ColumnName="FacebookID" />
+                <ScalarProperty Name="TwitterUserName" ColumnName="TwitterUserName" />
+                <ScalarProperty Name="UseGravatar" ColumnName="UseGravatar" />
+                <ScalarProperty Name="HidePresence" ColumnName="HidePresence" />
+                <ScalarProperty Name="OpenIdUserName" ColumnName="OpenIdUserName" />
+                <ScalarProperty Name="ReputationCache" ColumnName="ReputationCache" />
+                <ScalarProperty Name="LastLogonDate" ColumnName="LastLogonDate" />
+                <ScalarProperty Name="Signature" ColumnName="Signature" />
+                <ScalarProperty Name="AvatarFileName" ColumnName="AvatarFileName" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="PostsCount" ColumnName="PostsCount" />
+                <ScalarProperty Name="Interests" ColumnName="Interests" />
+                <ScalarProperty Name="Homepage" ColumnName="Homepage" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumUsersInGroups">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumUsersInGroup">
+              <MappingFragment StoreEntitySet="ForumUsersInGroup">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumComplaints">
+            <EntityTypeMapping TypeName="NPGuildModel.ForumComplaint">
+              <MappingFragment StoreEntitySet="ForumComplaints">
+                <ScalarProperty Name="ComplainText" ColumnName="ComplainText" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

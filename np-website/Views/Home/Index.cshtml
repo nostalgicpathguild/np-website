@@ -1,0 +1,133 @@
+﻿@model np_website.Models.HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@section scripts {
+    <script type="text/javascript">
+
+        $( document ).ready( function () {
+
+            var tz = moment.tz.guess();
+
+            var dateLabels = $( '.moment-datetime' );
+
+            dateLabels.each( function ( i ) {
+                var dateTime = moment.tz( $( this ).text(), tz );
+                $( this ).text( dateTime.fromNow() ).attr( 'title', dateTime.format( 'MMMM Do YYYY, h:mm:ss a' ) );
+            } );
+
+
+            var dayLabels = $( '.moment-datetime-day' );
+
+            dayLabels.each( function ( i ) {
+                var dateTime = moment( $( this ).text() );
+                $( this ).text( dateTime.format( 'dddd Do' ) ).attr( 'title', dateTime.format( 'MMMM Do YYYY, h:mm:ss a' ) );
+            } );
+
+
+            var timeLabels = $( '.moment-datetime-time' );
+
+            timeLabels.each( function ( i ) {
+                var dateTime = moment( $( this ).text() );
+                $( this ).text( dateTime.format( 'h:mm a' ) + ' EST' );
+            } );
+
+            $( 'table.schedule-list tr' ).css( 'visibility', 'visible' );
+
+        } );
+
+    </script>
+}
+
+@section banner {
+    <div id="banner">
+
+    </div>
+}
+
+
+<div class="row">
+    <div class="col-md-12 schedule-container">
+        <center>
+            <h3>Schedule</h3>
+            <table class="schedule-list">
+                @foreach (var item in Model.Events)
+                {
+                    <tr style="visibility: hidden;">
+                        <td><span class="moment-datetime-day">@item.StartDate.Value.ToString("s")</span></td>
+                        <td><span class="moment-datetime-time">@item.StartDate.Value.ToString("s")</span></td>
+                        <td>@item.Description @if(!string.IsNullOrWhiteSpace(item.Leader)){<small>@item.Leader on raid invites</small>}</td>
+                    </tr>
+                }
+            </table>
+        </center>
+    </div>
+</div>
+
+@foreach (var post in Model.Posts)
+{
+    <h1>@post.Title</h1>
+    <small>
+        By @post.Author <span class="moment-datetime">@post.PostDate.ToString("u")</span>
+        @if (post.EditedDate.HasValue)
+        {
+            <i> edited <span class="moment-datetime">@post.EditedDate.Value.ToString("u")</span></i>
+        }
+    </small>
+    <div class="content post-content">
+        @Html.Raw(post.Content)
+    </div>
+}
+
+@{ 
+    var paginationIndex = Model.PostsPageIndex;
+    var paginationEndIndex = 0;
+
+    if (paginationIndex > 1)
+    {
+        paginationIndex -= 2;
+    }
+    else if (paginationIndex < 2)
+    {
+        paginationIndex = 0;
+    }
+
+
+    var paginationCount = 5;
+    if (paginationIndex + paginationCount > Model.PostPageCount)
+    {
+        paginationIndex = Model.PostPageCount - paginationCount;
+        paginationIndex = paginationIndex < 0 ? 0 : paginationIndex;
+        paginationEndIndex = paginationIndex + paginationCount;
+        //paginationEndIndex = Model.PostPageCount - paginationIndex;
+    }
+    else
+    {
+        paginationEndIndex = paginationIndex + paginationCount;
+    }
+
+    paginationEndIndex = paginationEndIndex > Model.PostPageCount ? Model.PostPageCount : paginationIndex;
+}
+
+    <nav aria-label="Page navigation example primary">
+        <ul class="pagination pg-blue">
+
+            @if (Model.PostsPageIndex > 0) {<li class="page-item"><a class="page-link" href="@($"/posts/{Model.PostsPageIndex - 1}")">Previous</a></li>}
+            else {<li class="page-item"><a class="page-link disabled">Previous</a></li>}
+
+            @for(var i = paginationIndex; i < paginationEndIndex; i++)
+            {
+                if (i == Model.PostsPageIndex) {
+                    <li class="page-item"><a class="page-link active">@(i + 1)</a></li>
+                }
+                else {
+                    <li class="page-item"><a class="page-link" href="@($"/posts/{i}")">@(i + 1)</a></li>
+                }
+
+            }
+            
+            @if (Model.PostsPageIndex < Model.PostPageCount - 1) {<li class="page-item"><a class="page-link" href="@($"/posts/{Model.PostsPageIndex + 1}")">Next</a></li>}
+            else { <li class="page-item"><a class="page-link disabled">Next</a></li> }
+        </ul>
+    </nav>

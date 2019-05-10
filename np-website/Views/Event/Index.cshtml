@@ -1,0 +1,99 @@
+﻿@model np_website.Models.EventViewModel
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+}
+
+<h2>Events</h2>
+
+@section scripts {
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="~/Scripts/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <script src="~/Scripts/tempusdominus-bootstrap-4.min.js"></script>
+
+    <script type="text/javascript">
+        $( document ).ready( function () {
+            $( '.date-time-picker' ).datetimepicker();
+        } );
+    </script>
+
+    @*<script src="~/Scripts/datepicker/js/bootstrap-datepicker.min.js"></script>
+        <link href="~/Scripts/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+
+        <script type="text/javascript">
+            $( document ).ready( function () {
+                $( '.date-picker' ).datepicker( {
+                    daysOfWeekHighlighted: "0,1,4",
+                    todayHighlight: true
+                } );
+            } );
+        </script>*@
+
+}
+
+@using (Html.BeginForm())
+{
+    <button type="submit" name="action" value="new" class="btn btn-primary cancel">New Event</button>
+    <button type="submit" name="action" value="save" class="btn btn-primary">Save Changes</button>
+    <button type="submit" name="action" value="motd" class="btn btn-primary">Get MOTD</button>
+
+    if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Any()))
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Please enter all required fields</strong>
+            @Html.ValidationSummary(false, "Errors: ")
+        </div>
+    }
+
+    if(!string.IsNullOrWhiteSpace(Model.Motd))
+    {
+        <div>
+            @Html.TextAreaFor(m => Model.Motd, new { @class = "form-control no-max-width" })
+        </div>
+    }
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">End</th>
+                <th scope="col">Description</th>
+                <th scope="col">Leader</th>
+                <th scope="col">Date</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Events.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <div class="input-group date date-time-picker" id="@($"datetimepicker_start_{i}")" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#@($"datetimepicker_start_{i}")" id="@($"Events_{i}__StartDate")" name="@($"Events[{i}].StartDate")" value="@(Model.Events[i].StartDate.HasValue ? Model.Events[i].StartDate.Value.ToString("MM/dd/yyyy h:mm tt") : string.Empty)" />
+                            <div class="input-group-append" data-target="#@($"datetimepicker_start_{i}")" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group date date-time-picker" id="@($"datetimepicker_end_{i}")" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#@($"datetimepicker_end_{i}")" id="@($"Events_{i}__EndDate")" name="@($"Events[{i}].EndDate")" value="@(Model.Events[i].EndDate.HasValue ? Model.Events[i].EndDate.Value.ToString("MM/dd/yyyy h:mm tt") : string.Empty)" />
+                            <div class="input-group-append" data-target="#@($"datetimepicker_end_{i}")" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>@Html.TextBoxFor(m => Model.Events[i].Description, new { @class = "form-control" })</td>
+                    <td>@Html.TextBoxFor(m => Model.Events[i].Leader, new { @class = "form-control" })</td>
+                    <td>
+                        @Html.HiddenFor(m => Model.Events[i].EventId)
+                        <button type="submit" name="delete" value="@i" class="btn btn-outline-danger cancel">Remove</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
