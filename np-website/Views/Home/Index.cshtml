@@ -57,7 +57,7 @@
                     <tr style="visibility: hidden;">
                         <td><span class="moment-datetime-day">@item.StartDate.Value.ToString("s")</span></td>
                         <td><span class="moment-datetime-time">@item.StartDate.Value.ToString("s")</span></td>
-                        <td>@item.Description <small>@item.Leader on raid invites</small></td>
+                        <td>@item.Description @if(!string.IsNullOrWhiteSpace(item.Leader)){<small>@item.Leader on raid invites</small>}</td>
                     </tr>
                 }
             </table>
@@ -75,7 +75,7 @@
             <i> edited <span class="moment-datetime">@post.EditedDate.Value.ToString("u")</span></i>
         }
     </small>
-    <div class="content">
+    <div class="content post-content">
         @Html.Raw(post.Content)
     </div>
 }

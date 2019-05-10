@@ -79,8 +79,9 @@ namespace np_website.Models
                            : (start.Day % 10 == 3 && start.Day != 13) ? "rd"
                            : "th";
                 var time = start.Minute == 0 ? start.ToString("htt") : start.ToString("h:mtt");
+                var leader = string.IsNullOrWhiteSpace(e.Leader) ? string.Empty : $"({e.Leader} on RI)";
 
-                motd += $" || {start.ToString("ddd")} {start.Day}{suffix} {time} est - {e.Description} ({e.Leader} on RI)";
+                motd += $" || {start.ToString("ddd")} {start.Day}{suffix} {time} est - {e.Description} {leader}";
 
             }
 
