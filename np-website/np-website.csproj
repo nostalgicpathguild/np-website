@@ -152,6 +152,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DiscordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PostController.cs" />
@@ -262,6 +263,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DeletePostViewModel.cs" />
+    <Compile Include="Models\Discord\AccessTokenRequestModel.cs" />
+    <Compile Include="Models\Discord\AccessTokenResponseModel.cs" />
     <Compile Include="Models\EditPostModel.cs" />
     <Compile Include="Models\GoogleReCaptchaValidator.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
@@ -278,6 +281,7 @@
     <Compile Include="Resources\AppSettings.cs" />
     <Compile Include="Resources\MySession.cs" />
     <Compile Include="SiteAuthorize.cs" />
+    <Compile Include="Utilities\String.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspneforum_MSsql.sql" />
@@ -1351,6 +1355,7 @@
     <Folder Include="App_Data\forumuploadfiles\" />
     <Folder Include="forum\Jitbit.Utils\" />
     <Folder Include="Uploads\" />
+    <Folder Include="Views\Discord\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

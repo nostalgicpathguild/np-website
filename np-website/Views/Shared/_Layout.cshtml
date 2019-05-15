@@ -47,6 +47,10 @@
             }
             else
             {
+                if (np_website.Resources.MySession.DiscordAccessToken == null)
+                {
+                    <a href="/discord/login">Link with Discord</a>
+                }
                 <a class="nav-link" href="/member/logout">Logout</a>
             }
         </div>

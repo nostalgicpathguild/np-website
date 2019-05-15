@@ -10,6 +10,8 @@ namespace np_website.Resources
     {
         public static string GoogleReCaptchaSiteKey { get { return GetString("GoogleReCaptchaSiteKey"); } }
         public static string GoogleReCaptchaSecretKey { get { return GetString("GoogleReCaptchaSecretKey"); } }
+        public static string DiscordClientSecret { get { return GetString("DiscordClientSecret"); } }
+        public static string DiscordClientId { get { return GetString("DiscordClientId"); } }
 
         private static string GetString(string key, string defaultValue = null)
         {

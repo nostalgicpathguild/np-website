@@ -26,6 +26,8 @@ namespace np_website.Database
         public byte[] PasswordSalt { get; set; }
         public string CharacterName { get; set; }
         public int UserLevelId { get; set; }
+        public string DiscordAccessToken { get; set; }
+        public string DiscordRefreshToken { get; set; }
     
         public virtual UserLevel UserLevel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

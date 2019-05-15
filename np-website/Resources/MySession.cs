@@ -98,6 +98,36 @@ namespace np_website.Resources
             }
         }
 
+        public static string DiscordAccessToken
+        {
+            get
+            {
+                if (HttpContext.Current.Session["DiscordAccessToken"] != null)
+                    return HttpContext.Current.Session["DiscordAccessToken"].ToString();
+                else
+                    return null;
+            }
+            set
+            {
+                HttpContext.Current.Session["DiscordAccessToken"] = value;
+            }
+        }
+
+        public static string DiscordRefreshToken
+        {
+            get
+            {
+                if (HttpContext.Current.Session["DiscordRefreshToken"] != null)
+                    return HttpContext.Current.Session["DiscordRefreshToken"].ToString();
+                else
+                    return null;
+            }
+            set
+            {
+                HttpContext.Current.Session["DiscordRefreshToken"] = value;
+            }
+        }
+
 
     }
 }

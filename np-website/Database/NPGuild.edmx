@@ -167,11 +167,6 @@ warning 6002: The table/view 'NPGuild.dbo.ForumComplaints' does not have a prima
           <Property Name="RestrictTopicCreation" Type="bit" Nullable="false" />
           <Property Name="IconFile" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ForumSettings">
-          <Property Name="LastDigestSentDate" Type="datetime" />
-        </EntityType>-->
         <EntityType Name="ForumSubforums">
           <Key>
             <PropertyRef Name="ParentForumID" />
@@ -237,7 +232,7 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
           <Property Name="LastName" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Homepage" Type="nvarchar" MaxLength="255" />
           <Property Name="Interests" Type="nvarchar" MaxLength="255" />
           <Property Name="PostsCount" Type="int" Nullable="false" />
@@ -308,6 +303,8 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="PasswordSalt" Type="varbinary" MaxLength="1024" Nullable="false" />
           <Property Name="CharacterName" Type="nvarchar(max)" />
           <Property Name="UserLevelId" Type="int" Nullable="false" />
+          <Property Name="DiscordAccessToken" Type="nvarchar(max)" />
+          <Property Name="DiscordRefreshToken" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Posts_Author">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -458,6 +455,8 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="UserLevelId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserLevel" Relationship="NPGuildModel.FK_Users_UserLevel" FromRole="User" ToRole="UserLevel" />
           <NavigationProperty Name="Posts" Relationship="NPGuildModel.FK_Posts_Author" FromRole="User" ToRole="Post" />
+          <Property Name="DiscordAccessToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiscordRefreshToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Users_UserLevel">
           <End Type="NPGuildModel.UserLevel" Role="UserLevel" Multiplicity="1" />
@@ -711,7 +710,7 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Homepage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Interests" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PostsCount" Type="Int32" Nullable="false" />
@@ -781,6 +780,8 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="NPGuildModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="DiscordRefreshToken" ColumnName="DiscordRefreshToken" />
+                <ScalarProperty Name="DiscordAccessToken" ColumnName="DiscordAccessToken" />
                 <ScalarProperty Name="UserLevelId" ColumnName="UserLevelId" />
                 <ScalarProperty Name="CharacterName" ColumnName="CharacterName" />
                 <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
