@@ -5,13 +5,19 @@
 
 <h2>Review Inventory Dump</h2>
 
+@using (Html.BeginRouteForm("GuildBankProcessDump", FormMethod.Post))
+{
+    <button class="btn btn-primary" type="submit" name="action" value="approve">Approve</button>
+    <button class="btn btn-outline-warning" type="submit" name="action" value="abort">Abort</button>
+}
+
 <table class="table">
     <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Action</th>
             <th scope="col">Banker</th>
-            <th scope="col">Location</th>
+            @*<th scope="col">Location</th>*@
             <th scope="col">Name</th>
             <th scope="col">Count</th>
             <th scope="col">Slots</th>
@@ -29,19 +35,23 @@
                 }
                 else if (item.Count < item.PreviousCount)
                 {
-                    <span class="badge badge-info">Less</span>
+                    <span class="badge badge-warning">Less</span>
                 }
                 else if (item.PreviousCount == 0)
                 {
                     <span class="badge badge-success">New</span>
                 }
+                else if (item.Count > item.PreviousCount)
+                {
+                    <span class="badge badge-info">More</span>
+                }
             </td>
             <td>@item.CharacterName</td>
-            <td>@item.Location</td>
+            @*<td>@item.Location</td>*@
             <td>@item.Name</td>
             <td>@item.Count</td>
             <td>@item.Slots</td>
         </tr>
-        }
+            }
     </tbody>
 </table>

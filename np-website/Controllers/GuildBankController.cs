@@ -18,6 +18,41 @@ namespace np_website.Controllers
         }
 
         [SiteAuthorize(UserLevels = new int[] { 6, 7 })]
+        [Route("tools/process-import", Name = "GuildBankProcessDump")]
+        public ActionResult ProcessImport(string action)
+        {
+            if (action == "abort")
+            {
+                using (var db = new Database.NPGuildEntities())
+                {
+                    var items = db.InventoryItems.Where(f => f.Imported == false);
+                    db.InventoryItems.RemoveRange(items);
+                    db.SaveChanges();
+                }
+            }
+            else if (action == "approve")
+            {
+                using (var db = new Database.NPGuildEntities())
+                {
+                    var items = db.InventoryItems.Where(f => f.Imported == false);
+                    var characters = items.Select(f => f.CharacterName).Distinct().ToList();
+                    var itemsToRemove = db.InventoryItems.Where(f => characters.Contains(f.CharacterName) && f.Imported == true);
+                    db.InventoryItems.RemoveRange(itemsToRemove);
+                    db.SaveChanges();
+
+                    foreach(var item in items)
+                    {
+                        item.Imported = true;
+                        item.Active = true;
+                    }
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToRoute("GuildBankTools");
+        }
+
+        [SiteAuthorize(UserLevels = new int[] { 6, 7 })]
         [Route("tools/review", Name = "GuildBankReviewDump")]
         public ActionResult ReviewDump()
         {
@@ -30,20 +65,21 @@ namespace np_website.Controllers
 
                 foreach (var character in characters)
                 {
-
-                    foreach (var item in items.Where(f => f.CharacterName == character))
+                    var importingItemIds = items.Where(f => f.CharacterName == character).Select(f => f.ItemId).Distinct();
+                    foreach (var itemId in importingItemIds)
                     {
-                        var currentCount = db.InventoryItems.Where(f => f.CharacterName == character && f.Imported == true && f.Active == true && f.ItemId == item.ItemId).Select(f => f.Count).FirstOrDefault();
+                        var i = items.FirstOrDefault(f => f.CharacterName == character && f.ItemId == itemId);
+                        var currentCount = db.InventoryItems.Where(f => f.CharacterName == character && f.Imported == true && f.Active == true && f.ItemId == itemId).Select(f => f.Count).ToList();
 
                         viewModel.ImportedItems.Add(new ReviewDumpItemModel()
                         {
-                            CharacterName = item.CharacterName,
-                            Location = item.Location,
-                            Name = item.Name,
-                            ItemId = item.ItemId,
-                            Count = item.Count,
-                            Slots = item.Slots,
-                            PreviousCount = currentCount
+                            CharacterName = i.CharacterName,
+                            //Location = item.Location,
+                            Name = i.Name,
+                            ItemId = i.ItemId,
+                            Count = items.Where(f => f.CharacterName == character && f.ItemId == itemId).Sum(f => f.Count),
+                            Slots = i.Slots,
+                            PreviousCount = currentCount.Sum()
                         });
                     }
 
@@ -59,7 +95,7 @@ namespace np_website.Controllers
                         viewModel.ImportedItems.Add(new ReviewDumpItemModel()
                         {
                             CharacterName = item.CharacterName,
-                            Location = item.Location,
+                            //Location = item.Location,
                             Name = item.Name,
                             ItemId = item.ItemId,
                             Count = 0,

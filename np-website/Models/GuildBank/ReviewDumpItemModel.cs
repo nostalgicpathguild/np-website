@@ -9,7 +9,6 @@ namespace np_website.Models.GuildBank
     {
 
         public string CharacterName { get; set; }
-        public string Location { get; set; }
         public string Name { get; set; }
         public int ItemId { get; set; }
         public int Count { get; set; }

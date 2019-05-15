@@ -1,6 +1,6 @@
 ﻿@model np_website.Models.GuildBank.DumpUploadModel
 
-<h3>Upload inventory dump</h3>
+<h4>Upload inventory dump</h4>
 @using (Html.BeginForm("UploadDump", "GuildBank", FormMethod.Post, new { enctype = "multipart/form-data", @id = "dumpForm" }))
 {
     @(Html.AntiForgeryToken())
