@@ -268,6 +268,8 @@
     <Compile Include="Models\DeletePostViewModel.cs" />
     <Compile Include="Models\EditPostModel.cs" />
     <Compile Include="Models\GoogleReCaptchaValidator.cs" />
+    <Compile Include="Models\GuildBank\BrowseItemModel.cs" />
+    <Compile Include="Models\GuildBank\BrowseModel.cs" />
     <Compile Include="Models\GuildBank\DumpDataModel.cs" />
     <Compile Include="Models\GuildBank\DumpUploadModel.cs" />
     <Compile Include="Models\GuildBank\ReviewDumpItemModel.cs" />
@@ -1355,6 +1357,7 @@
     <Content Include="Views\GuildBank\Tools.cshtml" />
     <Content Include="Views\GuildBank\DumpUpload.cshtml" />
     <Content Include="Views\GuildBank\ReviewDump.cshtml" />
+    <Content Include="Views\GuildBank\Browse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\forumavatars\" />

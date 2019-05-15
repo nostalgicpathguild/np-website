@@ -17,6 +17,38 @@ namespace np_website.Controllers
             return View();
         }
 
+        [SiteAuthorize]
+        [Route("browse", Name = "GetBrowseGuildBank")]
+        [HttpGet]
+        public ActionResult Browse()
+        {
+            return View(new BrowseModel());
+        }
+
+        [SiteAuthorize]
+        [Route("browse", Name = "PostBrowseGuildBank")]
+        [HttpPost]
+        public ActionResult Browse(BrowseModel viewModel)
+        {
+            using (var db = new Database.NPGuildEntities())
+            {
+                var items = from p in db.InventoryItems
+                            where viewModel.Search == null || p.Name.Contains(viewModel.Search)
+                            select new BrowseItemModel
+                            {
+                                CharacterName = p.CharacterName,
+                                Location = p.Location,
+                                Name = p.Name,
+                                ItemId = p.ItemId,
+                                Count = p.Count,
+                                Slots = p.Slots,
+                            };
+                viewModel.Items = items.OrderBy(f => f.Name).ThenBy(f => f.CharacterName).ToList();
+
+                return View(viewModel);
+            }
+        }
+
         [SiteAuthorize(UserLevels = new int[] { 6, 7 })]
         [Route("tools/process-import", Name = "GuildBankProcessDump")]
         public ActionResult ProcessImport(string action)
