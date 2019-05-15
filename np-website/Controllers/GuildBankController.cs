@@ -17,15 +17,29 @@ namespace np_website.Controllers
             return View();
         }
 
-        [SiteAuthorize]
+        [SiteAuthorize(UserLevels = new int[] { 3, 4, 5, 6, 7 })]
         [Route("browse", Name = "GetBrowseGuildBank")]
         [HttpGet]
         public ActionResult Browse()
         {
-            return View(new BrowseModel());
+            using (var db = new Database.NPGuildEntities())
+            {
+                var items = from p in db.InventoryItems
+                            select new BrowseItemModel
+                            {
+                                CharacterName = p.CharacterName,
+                                Location = p.Location,
+                                Name = p.Name,
+                                ItemId = p.ItemId,
+                                Count = p.Count,
+                                Slots = p.Slots,
+                            };
+                
+                return View(new BrowseModel() { Items = items.OrderBy(f => f.Name).ThenBy(f => f.CharacterName).ToList() });
+            }
         }
 
-        [SiteAuthorize]
+        [SiteAuthorize(UserLevels = new int[] { 3, 4, 5, 6, 7 })]
         [Route("browse", Name = "PostBrowseGuildBank")]
         [HttpPost]
         public ActionResult Browse(BrowseModel viewModel)
