@@ -1,0 +1,23 @@
+﻿@model np_website.Models.GuildBank.DumpUploadModel
+
+<h3>Upload inventory dump</h3>
+@using (Html.BeginForm("UploadDump", "GuildBank", FormMethod.Post, new { enctype = "multipart/form-data", @id = "dumpForm" }))
+{
+    @(Html.AntiForgeryToken())
+    @Html.Raw(System.Web.HttpUtility.HtmlDecode((Html.ValidationSummary(string.Empty, new { @class = "text-danger" }) ?? (object)"").ToString()))
+    <label class="btn btn-default btn-file">
+        Browse @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple", @style = "display:none;", @accept = ".txt", @class = "guild-bank-dump-upload" })
+    </label>
+}
+
+<script type="text/javascript">
+
+    document.addEventListener( 'DOMContentLoaded', function () {
+        var fileInput = document.querySelector( 'input[type=file].guild-bank-dump-upload' );
+        var fileForm = document.querySelector( '#dumpForm' );
+
+        fileInput.addEventListener( 'change', function () { fileForm.submit(); } );
+
+    } );
+
+</script>

@@ -1,0 +1,47 @@
+﻿@model np_website.Models.GuildBank.ReviewDumpModel
+@{
+    ViewBag.Title = "ReviewDump";
+}
+
+<h2>Review Inventory Dump</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Action</th>
+            <th scope="col">Banker</th>
+            <th scope="col">Location</th>
+            <th scope="col">Name</th>
+            <th scope="col">Count</th>
+            <th scope="col">Slots</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ImportedItems.OrderBy(f => f.Name))
+        {
+        <tr>
+            <th scope="row">@item.ItemId</th>
+            <td>
+                @if (item.Count == 0)
+                {
+                    <span class="badge badge-danger">Deleting</span>
+                }
+                else if (item.Count < item.PreviousCount)
+                {
+                    <span class="badge badge-info">Less</span>
+                }
+                else if (item.PreviousCount == 0)
+                {
+                    <span class="badge badge-success">New</span>
+                }
+            </td>
+            <td>@item.CharacterName</td>
+            <td>@item.Location</td>
+            <td>@item.Name</td>
+            <td>@item.Count</td>
+            <td>@item.Slots</td>
+        </tr>
+        }
+    </tbody>
+</table>

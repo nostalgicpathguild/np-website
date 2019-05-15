@@ -167,11 +167,6 @@ warning 6002: The table/view 'NPGuild.dbo.ForumComplaints' does not have a prima
           <Property Name="RestrictTopicCreation" Type="bit" Nullable="false" />
           <Property Name="IconFile" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ForumSettings">
-          <Property Name="LastDigestSentDate" Type="datetime" />
-        </EntityType>-->
         <EntityType Name="ForumSubforums">
           <Key>
             <PropertyRef Name="ParentForumID" />
@@ -237,7 +232,7 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
           <Property Name="LastName" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Homepage" Type="nvarchar" MaxLength="255" />
           <Property Name="Interests" Type="nvarchar" MaxLength="255" />
           <Property Name="PostsCount" Type="int" Nullable="false" />
@@ -261,6 +256,21 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           </Key>
           <Property Name="GroupID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InventoryItems">
+          <Key>
+            <PropertyRef Name="InventoryItemId" />
+          </Key>
+          <Property Name="InventoryItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CharacterName" Type="nvarchar(max)" />
+          <Property Name="Location" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Slots" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Public" Type="bit" Nullable="false" />
+          <Property Name="Imported" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Posts">
           <Key>
@@ -358,6 +368,7 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <EntitySet Name="ForumUserGroups" EntityType="Self.ForumUserGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ForumUsers" EntityType="Self.ForumUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ForumUsersInGroup" EntityType="Self.ForumUsersInGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryItems" EntityType="Self.InventoryItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RaidAttendance" EntityType="Self.RaidAttendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLevels" EntityType="Self.UserLevels" Schema="dbo" store:Type="Tables" />
@@ -445,6 +456,7 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <EntitySet Name="ForumUsers" EntityType="NPGuildModel.ForumUser" />
           <EntitySet Name="ForumUsersInGroups" EntityType="NPGuildModel.ForumUsersInGroup" />
           <EntitySet Name="ForumComplaints" EntityType="NPGuildModel.ForumComplaint" />
+          <EntitySet Name="InventoryItems" EntityType="NPGuildModel.InventoryItem" />
           </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -711,7 +723,7 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Homepage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Interests" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PostsCount" Type="Int32" Nullable="false" />
@@ -745,6 +757,21 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="MessageID" Type="Int32" Nullable="false" />
           <Property Name="ComplainText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InventoryItem">
+          <Key>
+            <PropertyRef Name="InventoryItemId" />
+          </Key>
+          <Property Name="InventoryItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CharacterName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Slots" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Public" Type="Boolean" Nullable="false" />
+          <Property Name="Imported" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1063,6 +1090,22 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
                 <ScalarProperty Name="ComplainText" ColumnName="ComplainText" />
                 <ScalarProperty Name="MessageID" ColumnName="MessageID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryItems">
+            <EntityTypeMapping TypeName="NPGuildModel.InventoryItem">
+              <MappingFragment StoreEntitySet="InventoryItems">
+                <ScalarProperty Name="Imported" ColumnName="Imported" />
+                <ScalarProperty Name="Public" ColumnName="Public" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Slots" ColumnName="Slots" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="CharacterName" ColumnName="CharacterName" />
+                <ScalarProperty Name="InventoryItemId" ColumnName="InventoryItemId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
