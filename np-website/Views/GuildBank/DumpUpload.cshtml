@@ -5,7 +5,7 @@
 {
     @(Html.AntiForgeryToken())
     @Html.Raw(System.Web.HttpUtility.HtmlDecode((Html.ValidationSummary(string.Empty, new { @class = "text-danger" }) ?? (object)"").ToString()))
-    <label class="btn btn-default btn-file">
+    <label class="btn btn-outline-primary" style="cursor: pointer;">
         Browse @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple", @style = "display:none;", @accept = ".txt", @class = "guild-bank-dump-upload" })
     </label>
 }
