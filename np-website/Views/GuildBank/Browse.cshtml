@@ -22,7 +22,6 @@
         </div>
         <div class="col-md-5">
             @Html.TextBoxFor(m => m.Search, new { @class = "form-control" })
-            @*<input type="text" name="search" id="search" class="form-control" />*@
         </div>
         <div class="col-md-6">
         </div>
@@ -46,7 +45,6 @@
             @foreach (var item in Model.Items)
             {
             <tr>
-                @*<td scope="row"><a href="http://lucy.allakhazam.com/itemraw.html?id=@item.ItemId" data-eq="item=@item.ItemId">@item.Name</a></td>*@
                 <td scope="row"><a href="http://everquest.allakhazam.com/db/item.html?item=@item.ItemId&source=lucy" data-eq="item=@item.ItemId" target="_blank">@item.Name</a></td>
                 <th>@item.ItemId</th>
                 <td>@item.CharacterName</td>
