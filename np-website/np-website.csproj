@@ -157,6 +157,9 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Database\AuthenticatedSession.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Event.cs">
       <DependentUpon>NPGuild.tt</DependentUpon>
     </Compile>

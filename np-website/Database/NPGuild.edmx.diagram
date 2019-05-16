@@ -37,6 +37,8 @@
         <EntityTypeShape EntityType="NPGuildModel.ForumUsersInGroup" Width="1.5" PointX="8.75" PointY="13.75" />
         <EntityTypeShape EntityType="NPGuildModel.ForumComplaint" Width="1.5" PointX="13.75" PointY="9.75" />
         <EntityTypeShape EntityType="NPGuildModel.InventoryItem" Width="1.5" PointX="11.375" PointY="13.75" />
+        <EntityTypeShape EntityType="NPGuildModel.AuthenticatedSession" Width="1.5" PointX="5.25" PointY="17.375" />
+        <AssociationConnector Association="NPGuildModel.FK_AuthenticatedSessions_User" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
