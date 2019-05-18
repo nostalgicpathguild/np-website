@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Guild Bank Tools</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        @{Html.RenderPartial("DumpUpload", new np_website.Models.GuildBank.DumpUploadModel());}
+    </div>
+    <div class="col-md-4">
+        <h4>Upload bazaar pricing</h4>
+    </div>
+    <div class="col-md-4">
+        <h4>Download bazaar pricing</h4>
+    </div>
+</div>

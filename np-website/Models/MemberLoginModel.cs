@@ -45,6 +45,21 @@ namespace np_website.Models
                     Resources.MySession.aspnetforumUserID = forumUser.UserID;
                     Resources.MySession.aspnetforumUserName = member.CharacterName;
 
+                    var authenticatedSession = new Database.AuthenticatedSession()
+                    {
+                        ASPNetSessionId = HttpContext.Current.Session.SessionID,
+                        UserId = member.UserId,
+                        IpAddress = HttpContext.Current.Request.UserHostAddress
+                    };
+
+                    db.AuthenticatedSessions.Add(authenticatedSession);
+                    db.SaveChanges();
+
+                    var authCookie = new HttpCookie("npGuildIdentity");
+                    authCookie.Value = HttpContext.Current.Session.SessionID;
+                    authCookie.Expires = DateTime.MaxValue;
+                    HttpContext.Current.Response.SetCookie(authCookie);
+
                     return true;
                 }
                 else

@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="NPGuildModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AuthenticatedSessions">
+          <Key>
+            <PropertyRef Name="AuthenticatedSessionId" />
+          </Key>
+          <Property Name="AuthenticatedSessionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ASPNetSessionId" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="IpAddress" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Events">
           <Key>
             <PropertyRef Name="EventId" />
@@ -167,11 +176,6 @@ warning 6002: The table/view 'NPGuild.dbo.ForumComplaints' does not have a prima
           <Property Name="RestrictTopicCreation" Type="bit" Nullable="false" />
           <Property Name="IconFile" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="ForumSettings">
-          <Property Name="LastDigestSentDate" Type="datetime" />
-        </EntityType>-->
         <EntityType Name="ForumSubforums">
           <Key>
             <PropertyRef Name="ParentForumID" />
@@ -237,7 +241,7 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
           <Property Name="LastName" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Homepage" Type="nvarchar" MaxLength="255" />
           <Property Name="Interests" Type="nvarchar" MaxLength="255" />
           <Property Name="PostsCount" Type="int" Nullable="false" />
@@ -261,6 +265,21 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           </Key>
           <Property Name="GroupID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InventoryItems">
+          <Key>
+            <PropertyRef Name="InventoryItemId" />
+          </Key>
+          <Property Name="InventoryItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CharacterName" Type="nvarchar(max)" />
+          <Property Name="Location" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Slots" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Public" Type="bit" Nullable="false" />
+          <Property Name="Imported" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Posts">
           <Key>
@@ -309,6 +328,18 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="CharacterName" Type="nvarchar(max)" />
           <Property Name="UserLevelId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_AuthenticatedSessions_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AuthenticatedSessions" Type="Self.AuthenticatedSessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AuthenticatedSessions">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Posts_Author">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
@@ -334,6 +365,7 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="NPGuildModelStoreContainer">
+          <EntitySet Name="AuthenticatedSessions" EntityType="Self.AuthenticatedSessions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ForumAchievements" EntityType="Self.ForumAchievements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ForumAdministrators" EntityType="Self.ForumAdministrators" Schema="dbo" store:Type="Tables" />
@@ -358,6 +390,7 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <EntitySet Name="ForumUserGroups" EntityType="Self.ForumUserGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ForumUsers" EntityType="Self.ForumUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ForumUsersInGroup" EntityType="Self.ForumUsersInGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryItems" EntityType="Self.InventoryItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RaidAttendance" EntityType="Self.RaidAttendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLevels" EntityType="Self.UserLevels" Schema="dbo" store:Type="Tables" />
@@ -369,6 +402,10 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
     [ForumComplaints].[ComplainText] AS [ComplainText]
     FROM [dbo].[ForumComplaints] AS [ForumComplaints]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_AuthenticatedSessions_User" Association="Self.FK_AuthenticatedSessions_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AuthenticatedSessions" EntitySet="AuthenticatedSessions" />
+          </AssociationSet>
           <AssociationSet Name="FK_Posts_Author" Association="Self.FK_Posts_Author">
             <End Role="Users" EntitySet="Users" />
             <End Role="Posts" EntitySet="Posts" />
@@ -445,6 +482,12 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <EntitySet Name="ForumUsers" EntityType="NPGuildModel.ForumUser" />
           <EntitySet Name="ForumUsersInGroups" EntityType="NPGuildModel.ForumUsersInGroup" />
           <EntitySet Name="ForumComplaints" EntityType="NPGuildModel.ForumComplaint" />
+          <EntitySet Name="InventoryItems" EntityType="NPGuildModel.InventoryItem" />
+          <EntitySet Name="AuthenticatedSessions" EntityType="NPGuildModel.AuthenticatedSession" />
+          <AssociationSet Name="FK_AuthenticatedSessions_User" Association="NPGuildModel.FK_AuthenticatedSessions_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="AuthenticatedSession" EntitySet="AuthenticatedSessions" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -458,6 +501,7 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="UserLevelId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserLevel" Relationship="NPGuildModel.FK_Users_UserLevel" FromRole="User" ToRole="UserLevel" />
           <NavigationProperty Name="Posts" Relationship="NPGuildModel.FK_Posts_Author" FromRole="User" ToRole="Post" />
+          <NavigationProperty Name="AuthenticatedSessions" Relationship="NPGuildModel.FK_AuthenticatedSessions_User" FromRole="User" ToRole="AuthenticatedSession" />
         </EntityType>
         <Association Name="FK_Users_UserLevel">
           <End Type="NPGuildModel.UserLevel" Role="UserLevel" Multiplicity="1" />
@@ -711,7 +755,7 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Homepage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Interests" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PostsCount" Type="Int32" Nullable="false" />
@@ -746,6 +790,43 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
           <Property Name="MessageID" Type="Int32" Nullable="false" />
           <Property Name="ComplainText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="InventoryItem">
+          <Key>
+            <PropertyRef Name="InventoryItemId" />
+          </Key>
+          <Property Name="InventoryItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CharacterName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Slots" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Public" Type="Boolean" Nullable="false" />
+          <Property Name="Imported" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuthenticatedSession">
+          <Key>
+            <PropertyRef Name="AuthenticatedSessionId" />
+          </Key>
+          <Property Name="AuthenticatedSessionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ASPNetSessionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="IpAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="NPGuildModel.FK_AuthenticatedSessions_User" FromRole="AuthenticatedSession" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_AuthenticatedSessions_User">
+          <End Type="NPGuildModel.User" Role="User" Multiplicity="1" />
+          <End Type="NPGuildModel.AuthenticatedSession" Role="AuthenticatedSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AuthenticatedSession">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1063,6 +1144,32 @@ warning 6013: The table/view 'NPGuild.dbo.ForumSettings' does not have a primary
                 <ScalarProperty Name="ComplainText" ColumnName="ComplainText" />
                 <ScalarProperty Name="MessageID" ColumnName="MessageID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryItems">
+            <EntityTypeMapping TypeName="NPGuildModel.InventoryItem">
+              <MappingFragment StoreEntitySet="InventoryItems">
+                <ScalarProperty Name="Imported" ColumnName="Imported" />
+                <ScalarProperty Name="Public" ColumnName="Public" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Slots" ColumnName="Slots" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="CharacterName" ColumnName="CharacterName" />
+                <ScalarProperty Name="InventoryItemId" ColumnName="InventoryItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuthenticatedSessions">
+            <EntityTypeMapping TypeName="NPGuildModel.AuthenticatedSession">
+              <MappingFragment StoreEntitySet="AuthenticatedSessions">
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ASPNetSessionId" ColumnName="ASPNetSessionId" />
+                <ScalarProperty Name="AuthenticatedSessionId" ColumnName="AuthenticatedSessionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

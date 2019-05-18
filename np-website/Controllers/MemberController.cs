@@ -94,7 +94,20 @@ namespace np_website.Controllers
         [HttpGet]
         public ActionResult Logout()
         {
+            using (var db = new Database.NPGuildEntities())
+            {
+                var authenticatedSession = db.AuthenticatedSessions.Where(f => f.ASPNetSessionId == Session.SessionID).ToList();
+                db.AuthenticatedSessions.RemoveRange(authenticatedSession);
+                db.SaveChanges();
+            }
+
             Session.Abandon();
+
+            var authCookie = new HttpCookie("npGuildIdentity");
+            authCookie.Value = string.Empty;
+            authCookie.Expires = DateTime.Now.AddDays(-1);
+            Response.SetCookie(authCookie);
+
             return RedirectToAction("Index", "Home");
         }
     }

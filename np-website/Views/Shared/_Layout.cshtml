@@ -26,10 +26,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="https://discord.gg/xevAAxB" target="_blank">Discord</a>
                 </li>
-                <li class="nav-item">
-                    @*<a class="nav-link" href="https://forms.gle/reSkxD6cySmM8XsD8" target="_blank">Apply</a>*@
-                    <a class="nav-link" href="https://www.youtube.com/watch?v=oHg5SJYRHA0" target="_blank">Apply</a>
-                </li>
+                @if (np_website.Resources.MySession.UserLevel >= 3)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/guild-bank/browse">Guild Bank</a>
+                    </li>
+                }
                 @if (np_website.Resources.MySession.UserLevel == 6 || np_website.Resources.MySession.UserLevel == 7)
                 {
                     <li class="nav-item">
@@ -37,6 +39,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/event/index">Edit Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/guild-bank/tools">Guild Bank Tools</a>
                     </li>
                 }
             </ul>

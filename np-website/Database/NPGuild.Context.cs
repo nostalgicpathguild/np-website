@@ -54,5 +54,7 @@ namespace np_website.Database
         public virtual DbSet<ForumUser> ForumUsers { get; set; }
         public virtual DbSet<ForumUsersInGroup> ForumUsersInGroups { get; set; }
         public virtual DbSet<ForumComplaint> ForumComplaints { get; set; }
+        public virtual DbSet<InventoryItem> InventoryItems { get; set; }
+        public virtual DbSet<AuthenticatedSession> AuthenticatedSessions { get; set; }
     }
 }

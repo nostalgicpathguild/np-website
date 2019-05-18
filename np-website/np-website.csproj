@@ -152,10 +152,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\GuildBankController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Database\AuthenticatedSession.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Event.cs">
       <DependentUpon>NPGuild.tt</DependentUpon>
     </Compile>
@@ -231,6 +235,9 @@
     <Compile Include="Database\ForumUsersInGroup.cs">
       <DependentUpon>NPGuild.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\InventoryItem.cs">
+      <DependentUpon>NPGuild.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\NPGuild.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -264,6 +271,12 @@
     <Compile Include="Models\DeletePostViewModel.cs" />
     <Compile Include="Models\EditPostModel.cs" />
     <Compile Include="Models\GoogleReCaptchaValidator.cs" />
+    <Compile Include="Models\GuildBank\BrowseItemModel.cs" />
+    <Compile Include="Models\GuildBank\BrowseModel.cs" />
+    <Compile Include="Models\GuildBank\DumpDataModel.cs" />
+    <Compile Include="Models\GuildBank\DumpUploadModel.cs" />
+    <Compile Include="Models\GuildBank\ReviewDumpItemModel.cs" />
+    <Compile Include="Models\GuildBank\ReviewDumpModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\MemberLoginModel.cs" />
@@ -1344,6 +1357,10 @@
     <Content Include="Views\Post\Delete.cshtml" />
     <Content Include="Views\Post\Edit.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\GuildBank\Tools.cshtml" />
+    <Content Include="Views\GuildBank\DumpUpload.cshtml" />
+    <Content Include="Views\GuildBank\ReviewDump.cshtml" />
+    <Content Include="Views\GuildBank\Browse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\forumavatars\" />

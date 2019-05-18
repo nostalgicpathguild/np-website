@@ -18,6 +18,7 @@ namespace np_website.Database
         public User()
         {
             this.Posts = new HashSet<Post>();
+            this.AuthenticatedSessions = new HashSet<AuthenticatedSession>();
         }
     
         public int UserId { get; set; }
@@ -30,5 +31,7 @@ namespace np_website.Database
         public virtual UserLevel UserLevel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AuthenticatedSession> AuthenticatedSessions { get; set; }
     }
 }
